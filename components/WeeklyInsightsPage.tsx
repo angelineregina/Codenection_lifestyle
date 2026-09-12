@@ -97,6 +97,8 @@ export function WeeklyInsightsPage() {
           <p className="section-kicker">Section E</p><h2 id="weekly-takeaway-title">Weekly Takeaway</h2><p>{weeklyInsightsToday.weeklyTakeaway}</p>
           <Link className="insights-analysis-link" href="/risk">View Today&apos;s Analysis <ArrowRight size={14} /></Link>
         </section>
+
+        <p className="demo-note">Demo data · Weekly trends shown here are illustrative for this prototype.</p>
       </section>
     </main>
   );
