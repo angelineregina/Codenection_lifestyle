@@ -18,7 +18,7 @@ const socialPrefixes = ['/friend', '/send-support'];
 export function BottomNav() {
   const pathname = usePathname();
   const isSocialSubPage = socialPaths.includes(pathname) || socialPrefixes.some((prefix) => pathname.startsWith(prefix));
-  const activePath = isSocialSubPage ? '/social' : pathname === '/risk' || pathname === '/assess' ? '/' : pathname === '/what-if' ? '/plan' : pathname === '/vibe-check' ? '/focus' : pathname;
+  const activePath = isSocialSubPage ? '/social' : pathname === '/assess' ? '/' : pathname === '/risk' ? '/insights' : pathname === '/what-if' ? '/plan' : pathname === '/vibe-check' ? '/focus' : pathname;
   return <nav className="bottom-nav" aria-label="Primary navigation">{items.map(({ href, label, icon: Icon }) => {
     const active = activePath === href;
     return <Link className={`nav-item ${active ? 'is-active' : ''}`} href={href} key={href} aria-current={active ? 'page' : undefined}><Icon size={20} strokeWidth={active ? 2.5 : 1.9} /><span>{label}</span></Link>;
