@@ -1,4 +1,5 @@
-import { PlaceholderPage } from '@/components/PlaceholderPage';
+import { WeeklyInsightsPage } from '@/components/WeeklyInsightsPage';
+
 export default function InsightsPage() {
-  return <PlaceholderPage title="Insights" description="Your wellbeing insights are coming in the next prototype step." />;
+  return <WeeklyInsightsPage />;
 }

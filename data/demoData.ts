@@ -209,6 +209,52 @@ export const riskAnalysis = {
   keyInsight: 'Today is being driven by deadline compression, high mental demand, and too little recovery time.',
 };
 
+export type InsightTrendPoint = { label: string; value: number };
+export type RecoveryTrendPoint = { label: string; minutes: number };
+export type InsightDimension = { id: string; label: string; value: number };
+
+export const weeklyInsights = {
+  period: 'Mon 7 Sep - Sun 13 Sep',
+  workloadTrend: [
+    { label: 'Mon', value: 78 },
+    { label: 'Tue', value: 86 },
+    { label: 'Wed', value: 92 },
+    { label: 'Thu', value: 108 },
+    { label: 'Fri', value: 96 },
+    { label: 'Sat', value: 72 },
+    { label: 'Sun', value: 68 },
+  ] satisfies InsightTrendPoint[],
+  moodTrend,
+  stressTrend: [
+    { day: 'Mon', value: 4 },
+    { day: 'Tue', value: 5 },
+    { day: 'Wed', value: 6 },
+    { day: 'Thu', value: 8 },
+    { day: 'Fri', value: 6 },
+    { day: 'Sat', value: 4 },
+    { day: 'Sun', value: 3 },
+  ],
+  recoveryTrend: [
+    { label: 'Mon', minutes: 35 },
+    { label: 'Tue', minutes: 40 },
+    { label: 'Wed', minutes: 55 },
+    { label: 'Thu', minutes: 20 },
+    { label: 'Fri', minutes: 45 },
+    { label: 'Sat', minutes: 80 },
+    { label: 'Sun', minutes: 90 },
+  ] satisfies RecoveryTrendPoint[],
+  dimensions: [
+    { id: 'mental', label: 'Mental', value: 78 },
+    { id: 'time', label: 'Time', value: 74 },
+    { id: 'physical', label: 'Physical', value: 48 },
+    { id: 'social', label: 'Social', value: 42 },
+    { id: 'errands', label: 'Errands', value: 35 },
+  ] satisfies InsightDimension[],
+  workloadTakeaway: 'Workload peaked on Thursday when several deadlines overlapped.',
+  recoveryTakeaway: 'Your lowest recovery time occurred on the same day as your highest workload.',
+  weeklyTakeaway: 'Your workload became less sustainable when deadline pressure increased and recovery time dropped. Protecting even one recovery block helped your later days feel more manageable.',
+};
+
 export type FriendStatus = 'focused' | 'on-a-break' | 'in-class' | 'offline';
 export type AvatarTone = 'blue' | 'violet' | 'mint' | 'orange';
 export type FriendActivity = { task: string; timeRange: string };

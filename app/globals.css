@@ -436,6 +436,61 @@ button:focus-visible { outline: 3px solid rgba(40,119,239,.32); outline-offset: 
 .what-if-plan-link { display: inline-flex; align-items: center; justify-content: center; gap: 5px; margin-top: 2px; color: #6b84b2; font-size: 10px; font-weight: 800; text-decoration: none; }
 .what-if-plan-link:hover { color: var(--blue); }
 
+.insights-header { padding: 22px 20px 17px; background: linear-gradient(180deg, #f9fcff 0%, #f3f8ff 100%); }
+.insights-back-link { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 19px; padding: 7px 10px 7px 8px; border: 1px solid #dfe9f7; border-radius: 10px; color: #5f7caf; background: rgba(255,255,255,.8); font-size: 11px; font-weight: 800; text-decoration: none; transition: color .18s ease, background .18s ease, transform .18s ease; }
+.insights-back-link:hover { color: var(--blue); background: #fff; transform: translateX(-1px); }
+.insights-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.insights-title-row > div { min-width: 0; }
+.insights-title-row h1 { margin: 0; color: var(--ink); font-size: 25px; letter-spacing: -.055em; }
+.insights-title-row > div > p:last-child { max-width: 300px; margin: 7px 0 0; color: #7186ae; font-size: 12px; line-height: 1.45; }
+.insights-period-pill { flex: none; padding: 6px 8px; border-radius: 999px; color: #3e78cf; background: #e5f0ff; font-size: 9px; font-weight: 800; }
+.insights-period-label { display: block; margin-top: 13px; color: #8aa0c2; font-size: 9px; font-weight: 700; }
+.insights-content { display: grid; gap: 12px; padding: 0 14px 24px; }
+.insights-card, .weekly-takeaway-card { border: 1px solid var(--line); border-radius: var(--radius-card); background: rgba(255,255,255,.97); box-shadow: 0 6px 18px rgba(50,90,150,.045); }
+.insights-card { padding: 15px 13px 13px; }
+.insights-section-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 9px; padding: 0 1px 9px; }
+.insights-section-heading h2, .weekly-takeaway-card h2 { margin: 0; color: var(--ink); font-size: 15px; letter-spacing: -.03em; }
+.insights-section-heading > svg { flex: none; color: #6d95db; }
+.insight-trend-chart { margin: 1px -2px 0; }
+.insight-trend-chart svg { display: block; width: 100%; height: 132px; overflow: visible; }
+.insight-chart-highlight { fill: #fff2df; opacity: .8; }
+.insight-chart-gridline { stroke: #e8eff9; stroke-width: 1; }
+.insight-chart-line { fill: none; stroke: #2877ef; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.2; }
+.insight-chart-line--mood { stroke: #2877ef; }
+.insight-chart-line--stress { stroke: #7d68dd; stroke-dasharray: 4 4; }
+.insight-chart-point { fill: #fff; stroke: #2877ef; stroke-width: 2; }
+.insight-chart-point--mood { stroke: #2877ef; }
+.insight-chart-point--stress { stroke: #7d68dd; }
+.insight-chart-label { fill: #8a9dc0; font-size: 8px; }
+.insights-chart-legend, .insights-chart-legend-inline { display: flex; align-items: center; gap: 10px; color: #7d91b6; font-size: 8.5px; font-weight: 700; }
+.insights-chart-legend { margin: -3px 2px 0; }
+.insights-chart-legend-inline { flex: none; gap: 7px; padding-top: 4px; }
+.insights-chart-legend span, .insights-chart-legend-inline span { display: inline-flex; align-items: center; gap: 4px; }
+.legend-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #2877ef; }
+.legend-dot--orange { background: #efad67; }
+.legend-dot--violet { background: #7d68dd; }
+.insights-takeaway { display: flex; align-items: flex-start; gap: 6px; margin: 13px 0 0; padding: 10px; border-radius: 11px; color: #607aa9; background: #f4f8ff; font-size: 10px; line-height: 1.45; }
+.insights-takeaway svg { flex: none; margin-top: 1px; color: #4d8cf0; }
+.insights-summary-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; margin-top: 2px; }
+.insights-summary-grid div { display: grid; gap: 4px; min-width: 0; padding: 9px 8px; border-radius: 11px; background: #f5f8fd; }
+.insights-summary-grid span { color: #7d91b7; font-size: 8.5px; }
+.insights-summary-grid strong { color: var(--ink); font-size: 10px; line-height: 1.25; }
+.recovery-chart { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); align-items: end; gap: 5px; height: 117px; padding: 4px 2px 0; border-bottom: 1px solid #e6eef9; }
+.recovery-bar-wrap { display: grid; height: 100%; grid-template-rows: 14px 1fr 15px; justify-items: center; align-items: end; gap: 4px; min-width: 0; }
+.recovery-bar-wrap strong { color: #5f7bab; font-size: 8px; }
+.recovery-bar { display: block; width: 17px; min-height: 12px; border-radius: 6px 6px 3px 3px; background: linear-gradient(180deg, #78b5fb, #2b7af0); }
+.recovery-bar-wrap small { color: #899dc0; font-size: 8px; }
+.weekly-dimension-list { display: grid; gap: 11px; }
+.weekly-dimension-row { display: grid; gap: 5px; }
+.weekly-dimension-row > div { display: flex; align-items: baseline; justify-content: space-between; color: #657da9; font-size: 10.5px; font-weight: 700; }
+.weekly-dimension-row strong { color: var(--ink); font-size: 10.5px; }
+.weekly-dimension-track { display: block; height: 7px; overflow: hidden; border-radius: 99px; background: #edf3fb; }
+.weekly-dimension-track i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #b2d3fb, #4a91f4); }
+.weekly-takeaway-card { padding: 16px 14px 14px; border-color: #cfe2ff; background: linear-gradient(135deg, #f1f7ff, #eaf4ff); }
+.weekly-takeaway-card p:not(.section-kicker) { margin: 8px 0 0; color: #607aa9; font-size: 11px; line-height: 1.5; }
+.insights-analysis-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 14px; color: var(--blue); font-size: 10px; font-weight: 800; text-decoration: none; }
+.insights-analysis-link:hover { color: var(--blue-deep); }
+
 .friend-avatar { position: relative; display: inline-grid; flex: none; place-items: center; border-radius: 50%; color: #fff; font-weight: 800; }
 .friend-avatar--sm { width: 30px; height: 30px; font-size: 10px; border: 2px solid #fff; }
 .friend-avatar--md { width: 42px; height: 42px; font-size: 12px; border: 2px solid #fff; }
