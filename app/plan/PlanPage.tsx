@@ -32,6 +32,12 @@ type Recommendation = {
   action: string;
   icon: 'move' | 'shorten' | 'add' | 'keep';
   tone: 'violet' | 'orange' | 'mint' | 'blue';
+  actionable: boolean;
+  impact?: {
+    workloadReduction: number;
+    demandReductionHours: number;
+    recoveryBenefitMinutes: number;
+  };
 };
 
 const recommendations: Recommendation[] = [
@@ -43,6 +49,8 @@ const recommendations: Recommendation[] = [
     action: 'Move',
     icon: 'move',
     tone: 'violet',
+    actionable: true,
+    impact: { workloadReduction: 14, demandReductionHours: 1, recoveryBenefitMinutes: 20 },
   },
   {
     id: 'club',
@@ -52,6 +60,8 @@ const recommendations: Recommendation[] = [
     action: 'Shorten',
     icon: 'shorten',
     tone: 'orange',
+    actionable: true,
+    impact: { workloadReduction: 8, demandReductionHours: 0.5, recoveryBenefitMinutes: 10 },
   },
   {
     id: 'recovery',
@@ -61,6 +71,8 @@ const recommendations: Recommendation[] = [
     action: 'Add',
     icon: 'add',
     tone: 'mint',
+    actionable: true,
+    impact: { workloadReduction: 10, demandReductionHours: 0, recoveryBenefitMinutes: 20 },
   },
   {
     id: 'deep-work',
@@ -70,12 +82,14 @@ const recommendations: Recommendation[] = [
     action: 'Keep',
     icon: 'keep',
     tone: 'blue',
+    actionable: false,
   },
 ];
 
-const initialSelected = new Set(['assignment', 'club', 'recovery']);
+const actionableRecommendations = recommendations.filter((item) => item.actionable);
+const initialSelected = new Set(actionableRecommendations.map((item) => item.id));
 
-const schedule = [
+const baseSchedule = [
   { time: '9:00 AM', title: 'Strategy sync', meta: '30 min · Class', status: 'Keep', icon: FileText, tone: 'blue' },
   { time: '10:30 AM', title: 'FIT3143 Deep Work', meta: '2 hr · Focus', status: 'Keep', icon: FileText, tone: 'violet' },
   { time: '12:30 PM', title: 'Lunch', meta: '1 hr · Break', status: 'Keep', icon: Coffee, tone: 'mint' },
@@ -84,6 +98,47 @@ const schedule = [
   { time: '4:00 PM', title: 'Club prep', meta: '30 min · Reduced', status: 'Shortened', icon: Clock3, tone: 'orange' },
   { time: '6:00 PM', title: 'Assignment polish', meta: 'Moved to tomorrow', status: 'Moved', icon: MoveRight, tone: 'violet' },
 ];
+
+function getAppliedSchedule(selected: Set<string>) {
+  const schedule = baseSchedule.filter((item) => item.title !== 'Recovery break').map((item) => ({ ...item, status: 'Keep' }));
+  const club = schedule.find((item) => item.title === 'Club prep');
+  const assignment = schedule.find((item) => item.title === 'Assignment polish');
+
+  if (club) club.meta = '60 min - Original';
+  if (assignment) assignment.meta = '90 min - Today';
+
+  if (selected.has('club') && club) {
+    club.meta = '30 min - Reduced';
+    club.status = 'Shortened';
+  }
+  if (selected.has('assignment') && assignment) {
+    assignment.meta = 'Moved to tomorrow';
+    assignment.status = 'Moved';
+  }
+  if (selected.has('recovery')) {
+    schedule.splice(3, 0, { time: '1:30 PM', title: 'Recovery break', meta: '20 min - Recharge', status: 'Added', icon: Leaf, tone: 'mint' });
+  }
+
+  return schedule;
+}
+
+function getSelectionImpact(selected: Set<string>) {
+  const selectedItems = actionableRecommendations.filter((item) => selected.has(item.id));
+  const workloadReduction = selectedItems.reduce((total, item) => total + (item.impact?.workloadReduction ?? 0), 0);
+  const demandReductionHours = selectedItems.reduce((total, item) => total + (item.impact?.demandReductionHours ?? 0), 0);
+  const recoveryBenefitMinutes = selectedItems.reduce((total, item) => total + (item.impact?.recoveryBenefitMinutes ?? 0), 0);
+  const adjustedCount = selectedItems.filter((item) => item.action !== 'Add').length;
+  const addedCount = selectedItems.filter((item) => item.action === 'Add').length;
+
+  return {
+    count: selectedItems.length,
+    workloadAfter: 108 - workloadReduction,
+    demandAfter: (8.6 - demandReductionHours).toFixed(1),
+    recoveryAfter: 20 + recoveryBenefitMinutes,
+    workloadReduction,
+    summaryLabel: selectedItems.length === 0 ? 'No changes selected' : `${adjustedCount} adjusted${addedCount > 0 ? ` - ${addedCount} added` : ''}`,
+  };
+}
 
 function PlanBrand() {
   return (
@@ -102,31 +157,32 @@ function RecommendationIcon({ type }: { type: Recommendation['icon'] }) {
   return <FileText size={16} />;
 }
 
-function SummaryCard({ updated }: { updated?: boolean }) {
+function SummaryCard({ selected, updated }: { selected: Set<string>; updated?: boolean }) {
+  const impact = getSelectionImpact(selected);
+
   return (
     <section className={styles.summaryCard} aria-label={updated ? 'Impact summary' : 'Plan changes summary'}>
       <div className={styles.summaryMetric}>
         <span className={styles.summaryLabel}>Workload</span>
-        <strong>{updated ? '108% → 76%' : '108% → 76%'}</strong>
-        <em className={styles.down}>↓ 32%</em>
+        <strong>108% → {impact.workloadAfter}%</strong>
+        <em className={styles.down}>{impact.workloadReduction > 0 ? `↓ ${impact.workloadReduction}%` : 'No change'}</em>
       </div>
       <div className={styles.summaryMetric}>
-        <span className={styles.summaryLabel}>{updated ? 'Recovery time' : 'Recovery time'}</span>
-        <strong>{updated ? '20 → 70 min' : '+50 min'}</strong>
-        <em className={styles.up}>{updated ? '↑ 250%' : 'More breathing room'}</em>
+        <span className={styles.summaryLabel}>Recovery time</span>
+        <strong>20 → {impact.recoveryAfter} min</strong>
+        <em className={styles.up}>{impact.recoveryAfter > 20 ? `↑ ${impact.recoveryAfter - 20} min` : 'No added recovery'}</em>
       </div>
       <div className={styles.summaryMetric}>
-        <span className={styles.summaryLabel}>{updated ? 'Risk level' : 'Changes'}</span>
-        <strong>{updated ? 'High → Moderate' : '3 changes'}</strong>
-        <em>{updated ? 'Steadier pace' : '2 adjusted · 1 added'}</em>
+        <span className={styles.summaryLabel}>Changes</span>
+        <strong>{impact.count} change{impact.count === 1 ? '' : 's'}</strong>
+        <em>{impact.summaryLabel}</em>
       </div>
     </section>
   );
 }
 
 function RecommendationCard({ item, selected, onToggle }: { item: Recommendation; selected: boolean; onToggle: () => void }) {
-  return (
-    <button className={`${styles.recommendation} ${selected ? styles.selected : ''}`} type="button" onClick={onToggle} aria-pressed={selected}>
+  const content = <>
       <span className={`${styles.recommendationIcon} ${styles[item.tone]}`}><RecommendationIcon type={item.icon} /></span>
       <span className={styles.recommendationCopy}>
         <strong>{item.title}</strong>
@@ -134,14 +190,15 @@ function RecommendationCard({ item, selected, onToggle }: { item: Recommendation
         <small>{item.detail}</small>
       </span>
       <span className={styles.recommendationAside}>
-        <span className={`${styles.checkbox} ${selected ? styles.checked : ''}`}>{selected && <Check size={12} strokeWidth={3} />}</span>
-        <span className={`${styles.actionPill} ${styles[item.tone]}`}>{item.action}</span>
+        {item.actionable ? <><span className={`${styles.checkbox} ${selected ? styles.checked : ''}`}>{selected && <Check size={12} strokeWidth={3} />}</span><span className={`${styles.actionPill} ${styles[item.tone]}`}>{item.action}</span></> : <span className={`${styles.actionPill} ${styles[item.tone]}`}>Protected</span>}
       </span>
-    </button>
-  );
+    </>;
+
+  if (!item.actionable) return <article className={`${styles.recommendation} ${styles.protectedRecommendation}`} aria-label="Protected commitment">{content}</article>;
+  return <button className={`${styles.recommendation} ${selected ? styles.selected : ''}`} type="button" onClick={onToggle} aria-pressed={selected}>{content}</button>;
 }
 
-function ScheduleRow({ item }: { item: (typeof schedule)[number] }) {
+function ScheduleRow({ item }: { item: ReturnType<typeof getAppliedSchedule>[number] }) {
   const Icon = item.icon;
   return (
     <div className={styles.scheduleRow}>
@@ -159,8 +216,9 @@ export function PlanPage() {
   const [selected, setSelected] = useState<Set<string>>(() => new Set(initialSelected));
   const [menuOpen, setMenuOpen] = useState(false);
   const [planHint, setPlanHint] = useState('');
-  const selectedCount = selected.size;
-  const allSelected = selectedCount === recommendations.length;
+  const selectedCount = getSelectionImpact(selected).count;
+  const allSelected = selectedCount === actionableRecommendations.length;
+  const appliedSchedule = getAppliedSchedule(selected);
 
   function toggleRecommendation(id: string) {
     setSelected((current) => {
@@ -173,14 +231,14 @@ export function PlanPage() {
   }
 
   function toggleAll() {
-    setSelected(allSelected ? new Set() : new Set(recommendations.map((item) => item.id)));
+    setSelected(allSelected ? new Set() : new Set(actionableRecommendations.map((item) => item.id)));
     setPlanHint('');
   }
 
   function tryDifferentPlan() {
     router.push('/what-if');
     setUpdated(false);
-    setSelected(new Set(['assignment', 'recovery', 'deep-work']));
+    setSelected(new Set(['assignment', 'recovery']));
     setPlanHint('Here’s another balanced option to try.');
   }
 
@@ -201,12 +259,12 @@ export function PlanPage() {
 
         <section className={styles.sectionBlock}>
           <div className={styles.sectionHeading}><h2><CalendarDays size={16} /> Your New Schedule</h2><button type="button" className={styles.inlineAction}>View calendar <ChevronRight size={14} /></button></div>
-          <div className={styles.scheduleCard}>{schedule.map((item) => <ScheduleRow key={`${item.time}-${item.title}`} item={item} />)}</div>
+          <div className={styles.scheduleCard}>{appliedSchedule.map((item) => <ScheduleRow key={`${item.time}-${item.title}`} item={item} />)}</div>
         </section>
 
         <section className={styles.sectionBlock}>
           <div className={styles.sectionHeading}><h2><Sparkles size={16} /> Impact Summary</h2></div>
-          <SummaryCard updated />
+          <SummaryCard selected={selected} updated />
         </section>
 
         <section className={styles.takeCareCard}>
@@ -231,7 +289,7 @@ export function PlanPage() {
         <p className={styles.subtitle}>We’ve created a more balanced plan for your day, based on your workload and well-being.</p>
       </header>
 
-      <SummaryCard />
+      <SummaryCard selected={selected} />
 
       <section className={styles.sectionBlock}>
         <div className={styles.sectionHeading}><h2><Sparkles size={15} /> Recommended Changes</h2><button type="button" className={styles.selectAll} onClick={toggleAll}>{allSelected ? 'Clear all' : 'Select all'}</button></div>

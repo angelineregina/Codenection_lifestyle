@@ -43,6 +43,8 @@
 .recommendation { display: grid; grid-template-columns: 31px minmax(0,1fr) auto; align-items: center; gap: 8px; width: 100%; padding: 10px 9px; border: 1px solid #e1eaf7; border-radius: 13px; color: #12295b; background: rgba(255,255,255,.97); box-shadow: 0 4px 12px rgba(50,90,150,.03); cursor: pointer; text-align: left; transition: transform .18s ease, border-color .18s ease, background .18s ease; }
 .recommendation:hover { border-color: #c3dafa; transform: translateY(-1px); }
 .recommendation.selected { border-color: #c9dcfa; background: linear-gradient(100deg, #fff, #f7fbff); }
+.protectedRecommendation { cursor: default; background: #f7fbff; }
+.protectedRecommendation:hover { border-color: #e1eaf7; transform: none; }
 .recommendationIcon, .scheduleIcon { display: grid; place-items: center; flex: none; border-radius: 9px; }
 .recommendationIcon { width: 31px; height: 31px; }
 .violet { color: #6954e8; background: #efe9ff; }
