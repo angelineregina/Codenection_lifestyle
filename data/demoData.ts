@@ -44,13 +44,14 @@ export const user = {
 export const energy = {
   score: 78,
   label: 'Good energy',
-  caption: "You're in a healthy range. Keep going!",
+  caption: 'Self-reported demo energy · Keep going at your pace.',
 };
 
 export const weeklyCapacity = {
   score: 62,
   values: [46, 58, 68, 74, 62, 38, 34],
   labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+  historyLabel: 'Prototype history',
 };
 
 export const schedule: ScheduleItem[] = [
@@ -63,6 +64,9 @@ export const schedule: ScheduleItem[] = [
   { id: 'evening-reset', time: '8:30 PM', title: 'Evening reset', duration: '30 min · Recovery', category: 'Recovery', icon: 'reset', completed: false },
 ];
 
+export type MoodStressPoint = { day: string; value: number };
+export type TodayMoodStress = { mood: number; stress: number };
+
 export const moodTrend = [
   { day: 'Mon', value: 6 },
   { day: 'Tue', value: 5 },
@@ -71,7 +75,17 @@ export const moodTrend = [
   { day: 'Fri', value: 6 },
   { day: 'Sat', value: 5 },
   { day: 'Sun', value: 7 },
-];
+] satisfies MoodStressPoint[];
+
+export const stressTrend = [
+  { day: 'Mon', value: 4 },
+  { day: 'Tue', value: 5 },
+  { day: 'Wed', value: 6 },
+  { day: 'Thu', value: 8 },
+  { day: 'Fri', value: 6 },
+  { day: 'Sat', value: 4 },
+  { day: 'Sun', value: 3 },
+] satisfies MoodStressPoint[];
 
 export const workloadSustainability = {
   status: 'High workload',
@@ -314,15 +328,7 @@ export const weeklyInsights = {
     { label: 'Sun', value: 68 },
   ] satisfies InsightTrendPoint[],
   moodTrend,
-  stressTrend: [
-    { day: 'Mon', value: 4 },
-    { day: 'Tue', value: 5 },
-    { day: 'Wed', value: 6 },
-    { day: 'Thu', value: 8 },
-    { day: 'Fri', value: 6 },
-    { day: 'Sat', value: 4 },
-    { day: 'Sun', value: 3 },
-  ],
+  stressTrend,
   recoveryTrend: [
     { label: 'Mon', minutes: 35 },
     { label: 'Tue', minutes: 40 },

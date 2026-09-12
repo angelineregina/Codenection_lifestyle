@@ -176,10 +176,15 @@ button:focus-visible { outline: 3px solid rgba(40,119,239,.32); outline-offset: 
 .capacity-detail-list strong { color: var(--ink); font-size: 11px; text-align: right; }
 .detail-meter { height: 7px; overflow: hidden; border-radius: 99px; background: #edf3fb; }
 .detail-meter i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #a4cdfd, #2877ef); }
+.capacity-history-note { margin: 13px 0 0; color: #94a6c5; font-size: 10px; line-height: 1.4; }
 .trend-detail-list { grid-template-columns: repeat(7, 1fr); padding: 17px 8px; border-radius: 16px; background: #f4f8ff; }
 .trend-detail-list > div { display: grid; justify-items: center; gap: 8px; color: #7a90b7; font-size: 10px; }
 .trend-detail-list strong { color: var(--blue); font-size: 15px; }
 .trend-detail-list small { color: #a0b0ca; font-size: 9px; font-weight: 400; }
+.trend-detail-values { display: flex; gap: 7px; }
+.trend-detail-values strong { display: grid; justify-items: center; color: var(--blue); font-size: 12px; }
+.trend-detail-values strong:last-child { color: #7d68dd; }
+.trend-detail-values small { display: block; margin-top: 2px; color: #a0b0ca; font-size: 8px; font-weight: 700; }
 .metric-list { margin-top: 18px; }
 .metric-list div { display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #edf2fa; color: #7186ae; font-size: 12px; }
 .metric-list strong { color: var(--ink); }
@@ -192,6 +197,18 @@ button:focus-visible { outline: 3px solid rgba(40,119,239,.32); outline-offset: 
 .suggestion-list li::before { position: absolute; top: 5px; left: 0; width: 8px; height: 8px; border-radius: 50%; background: #56a2f6; content: ''; }
 .sheet-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 23px; }
 .sheet-actions .primary-button, .sheet-actions .secondary-button { width: 100%; }
+.mood-log-panel { margin-top: 14px; padding: 13px 12px 12px; border: 1px solid #d7e8ff; border-radius: 14px; background: linear-gradient(135deg, #f1f7ff, #f8fbff); }
+.mood-log-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.mood-log-heading h3 { margin: 0; color: var(--ink); font-size: 14px; }
+.mood-log-scale { padding-top: 2px; color: #8a9fc2; font-size: 9px; }
+.mood-log-control { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 3px 10px; align-items: center; margin-top: 14px; }
+.mood-log-control > span { display: grid; gap: 2px; }
+.mood-log-control strong { color: var(--ink); font-size: 11px; }
+.mood-log-control small { color: #8b9fbe; font-size: 9px; }
+.mood-log-control output { color: #397cdd; font-size: 10px; font-weight: 800; }
+.mood-log-control input { grid-column: 1 / -1; width: 100%; height: 5px; margin: 3px 0 0; accent-color: var(--blue); cursor: pointer; }
+.mood-log-button { width: 100%; margin-top: 14px; min-height: 38px; }
+.mood-log-note { margin: 8px 0 0; color: #94a6c5; font-size: 9px; line-height: 1.35; text-align: center; }
 
 .focus-content { display: grid; gap: 12px; padding: 0 14px 24px; }
 .settings-button { width: 40px; height: 40px; }
