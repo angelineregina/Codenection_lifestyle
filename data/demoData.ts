@@ -128,6 +128,10 @@ export type RiskFactor = {
   icon: RiskFactorIcon;
 };
 
+export type RiskDeadline = { id: string; date: string; label: string };
+export type SleepDay = { day: string; hours: number };
+export type RiskTrendPoint = { id: string; label: string; value: number };
+
 export const riskAnalysis = {
   score: 87,
   status: 'High Risk',
@@ -147,4 +151,29 @@ export const riskAnalysis = {
     { id: 'insufficient-recovery', label: 'Insufficient recovery', detail: "You've had fewer than 6 hours of sleep for 3 days", icon: 'sleep' },
     { id: 'increased-commitments', label: 'Increased commitments', detail: 'More social and extracurricular activities this week', icon: 'social' },
   ] satisfies RiskFactor[],
+  deadlines: [
+    { id: 'marketing-assignment', date: 'Aug 12', label: 'Marketing assignment' },
+    { id: 'ux-report', date: 'Aug 14', label: 'UX Report' },
+    { id: 'financial-reflection', date: 'Aug 16', label: 'Financial Reflection' },
+  ] satisfies RiskDeadline[],
+  mentalWorkloadTags: ['Problem solving', 'Long reading', 'Technical work'],
+  sleepByDay: [
+    { day: 'Mon', hours: 5 },
+    { day: 'Tue', hours: 5.5 },
+    { day: 'Wed', hours: 4.5 },
+    { day: 'Thu', hours: 6 },
+    { day: 'Fri', hours: 6.5 },
+    { day: 'Sat', hours: 7 },
+    { day: 'Sun', hours: 6 },
+  ] satisfies SleepDay[],
+  recommendedSleepHours: 8,
+  commitmentTags: ['Club events', 'Group projects', 'Personal errands'],
+  weeklyTrend: [
+    { id: 'jul-21', label: 'Jul 21', value: 58 },
+    { id: 'jul-28', label: 'Jul 28', value: 66 },
+    { id: 'aug-4', label: 'Aug 4', value: 74 },
+    { id: 'aug-11', label: 'Aug 11', value: 80 },
+    { id: 'current', label: 'Now', value: 87 },
+  ] satisfies RiskTrendPoint[],
+  keyInsight: 'Your workload and risk have been increasing over the past two weeks, mainly due to deadline compression and reduced recovery time.',
 };

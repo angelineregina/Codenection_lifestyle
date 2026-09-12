@@ -8,7 +8,7 @@ const items = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/plan', label: 'Plan', icon: CalendarDays },
   { href: '/focus', label: 'Focus', icon: Heart },
-  { href: '/insights', label: 'Insights', icon: BarChart3 },
+  { href: '/risk', label: 'Insights', icon: BarChart3 },
   { href: '/more', label: 'More', icon: MoreHorizontal },
 ];
 
