@@ -77,3 +77,74 @@ export const smartSuggestion = {
     'Preserve your evening recovery time',
   ],
 };
+
+export type FocusMetricIcon = 'clock' | 'coffee' | 'eye' | 'smile' | 'user' | 'info';
+
+export type FocusMetric = {
+  id: string;
+  label: string;
+  value: string;
+  caption: string;
+  icon: FocusMetricIcon;
+  span?: 'full';
+};
+
+const focusSessionDurationMinutes = 52;
+
+export const focusSession = {
+  durationMinutes: focusSessionDurationMinutes,
+  compareLabel: 'Compared with your Quick Vibe Check',
+  fatigueNote: "This session has been running for a while, and a few fatigue-related cues have shifted from where you started. It's worth noticing, not a diagnosis.",
+  metrics: [
+    { id: 'session-length', label: 'Session length', value: `${focusSessionDurationMinutes} min`, caption: 'Since you started', icon: 'clock' },
+    { id: 'break-status', label: 'Break status', value: 'No break yet', caption: 'This session', icon: 'coffee' },
+    { id: 'blink-rate', label: 'Blink rate', value: '+18%', caption: 'vs your baseline', icon: 'eye' },
+    { id: 'yawning', label: 'Yawning', value: '2', caption: 'in this session', icon: 'smile' },
+    { id: 'posture-shifts', label: 'Posture shifts', value: '3', caption: 'in this session', icon: 'user' },
+    { id: 'eye-strain', label: 'Eye strain', value: 'Slight increase', caption: 'vs your baseline', icon: 'info', span: 'full' },
+  ] satisfies FocusMetric[],
+};
+
+export const focusSuggestion = {
+  title: 'Take a 5-minute break',
+  subtitle: 'A short break may help you recharge before things feel overwhelming.',
+};
+
+export type RiskTier = 'high' | 'medium' | 'manageable';
+
+export type RiskDimension = {
+  id: string;
+  label: string;
+  value: number;
+  tier: RiskTier;
+};
+
+export type RiskFactorIcon = 'deadline' | 'brain' | 'sleep' | 'social';
+
+export type RiskFactor = {
+  id: string;
+  label: string;
+  detail: string;
+  icon: RiskFactorIcon;
+};
+
+export const riskAnalysis = {
+  score: 87,
+  status: 'High Risk',
+  changeLabel: 'Higher than usual',
+  caption: 'Your current workload and recovery patterns may be unsustainable if this continues.',
+  updatedLabel: 'Updated just now',
+  dimensions: [
+    { id: 'mental', label: 'Mental', value: 85, tier: 'high' },
+    { id: 'time', label: 'Time', value: 72, tier: 'high' },
+    { id: 'physical', label: 'Physical', value: 60, tier: 'medium' },
+    { id: 'social', label: 'Social', value: 45, tier: 'medium' },
+    { id: 'errands', label: 'Errands', value: 30, tier: 'manageable' },
+  ] satisfies RiskDimension[],
+  factors: [
+    { id: 'deadline-compression', label: 'Deadline compression', detail: '3 major deadlines within 5 days', icon: 'deadline' },
+    { id: 'mental-workload', label: 'High mental workload', detail: 'Multiple cognitively demanding tasks', icon: 'brain' },
+    { id: 'insufficient-recovery', label: 'Insufficient recovery', detail: "You've had fewer than 6 hours of sleep for 3 days", icon: 'sleep' },
+    { id: 'increased-commitments', label: 'Increased commitments', detail: 'More social and extracurricular activities this week', icon: 'social' },
+  ] satisfies RiskFactor[],
+};
