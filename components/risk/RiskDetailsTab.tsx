@@ -55,7 +55,7 @@ export function RiskDetailsTab() {
 
       <section className="surface-card risk-closing-card">
         <p>Small changes can make a big difference. Let&apos;s create a balance plan.</p>
-        <Link className="primary-button" href="/save-my-day">Save My Day<ArrowRight size={14} /></Link>
+        <Link className="primary-button" href="/plan">Save My Day<ArrowRight size={14} /></Link>
       </section>
     </>
   );
