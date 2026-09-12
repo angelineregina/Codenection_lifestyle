@@ -6,10 +6,11 @@ import { BarChart3, Camera, CameraOff, ChevronRight, Pause, Play, User, X } from
 type SessionPreviewCardProps = {
   durationMinutes: number;
   compareLabel: string;
+  baselineLabel: string;
   onCompareClick: () => void;
 };
 
-export function SessionPreviewCard({ durationMinutes, compareLabel, onCompareClick }: SessionPreviewCardProps) {
+export function SessionPreviewCard({ durationMinutes, compareLabel, baselineLabel, onCompareClick }: SessionPreviewCardProps) {
   const [paused, setPaused] = useState(false);
   const [cameraOn, setCameraOn] = useState(true);
 
@@ -31,7 +32,7 @@ export function SessionPreviewCard({ durationMinutes, compareLabel, onCompareCli
         </div>
       </div>
       <button className="session-preview-footer" type="button" onClick={onCompareClick}>
-        <BarChart3 size={13} />{compareLabel}<ChevronRight size={13} />
+        <BarChart3 size={13} /><span className="session-preview-compare-copy"><span>{compareLabel}</span><small>{baselineLabel}</small></span><ChevronRight size={13} />
       </button>
     </section>
   );

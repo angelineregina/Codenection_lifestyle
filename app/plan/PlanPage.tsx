@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import {
   ArrowLeft,
@@ -153,6 +154,7 @@ function ScheduleRow({ item }: { item: (typeof schedule)[number] }) {
 }
 
 export function PlanPage() {
+  const router = useRouter();
   const [updated, setUpdated] = useState(false);
   const [selected, setSelected] = useState<Set<string>>(() => new Set(initialSelected));
   const [menuOpen, setMenuOpen] = useState(false);
@@ -176,6 +178,7 @@ export function PlanPage() {
   }
 
   function tryDifferentPlan() {
+    router.push('/what-if');
     setUpdated(false);
     setSelected(new Set(['assignment', 'recovery', 'deep-work']));
     setPlanHint('Here’s another balanced option to try.');

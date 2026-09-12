@@ -56,15 +56,15 @@ export const moodTrend = [
 ];
 
 export const workloadSustainability = {
-  status: 'Low Risk',
-  explanation: 'Your current workload fits within your available capacity.',
-  factors: ['Good sleep routine', 'Balanced workload', 'Stable recovery'],
-  estimatedWorkHours: 8,
-  availableHours: 12,
+  status: 'High workload',
+  explanation: 'Deadline compression and low recovery are pressing on your capacity today.',
+  factors: ['Deadline compression', 'Low recovery time', 'Multiple commitments'],
+  estimatedWorkHours: 8.6,
+  availableHours: 7,
   metrics: [
-    { label: 'Time pressure', value: 'Low' },
-    { label: 'Cognitive demand', value: 'Moderate' },
-    { label: 'Recovery', value: 'Good' },
+    { label: 'Time pressure', value: 'High' },
+    { label: 'Cognitive demand', value: 'High' },
+    { label: 'Recovery', value: 'Low' },
   ],
 };
 
@@ -77,6 +77,22 @@ export const smartSuggestion = {
     'Preserve your evening recovery time',
   ],
 };
+
+export type WhatIfTask = {
+  id: string;
+  title: string;
+  time: string;
+  duration: string;
+  durationMinutes: number;
+  priority: 'High priority' | 'Medium priority' | 'Lower priority';
+};
+
+export const whatIfTasks: WhatIfTask[] = [
+  { id: 'fit3143-deep-work', title: 'FIT3143 Deep Work', time: '10:30 AM', duration: '2 hrs', durationMinutes: 120, priority: 'High priority' },
+  { id: 'club-meeting-prep', title: 'Club meeting prep', time: '4:00 PM', duration: '60 min', durationMinutes: 60, priority: 'Medium priority' },
+  { id: 'assignment-polish', title: 'Assignment polish', time: '6:00 PM', duration: '90 min', durationMinutes: 90, priority: 'Lower priority' },
+  { id: 'group-project', title: 'Group project', time: '2:00 PM', duration: '2 hrs', durationMinutes: 120, priority: 'High priority' },
+];
 
 export type FocusMetricIcon = 'clock' | 'coffee' | 'eye' | 'smile' | 'user' | 'info';
 
@@ -94,20 +110,22 @@ const focusSessionDurationMinutes = 52;
 export const focusSession = {
   durationMinutes: focusSessionDurationMinutes,
   compareLabel: 'Compared with your Quick Vibe Check',
-  fatigueNote: "This session has been running for a while, and a few fatigue-related cues have shifted from where you started. It's worth noticing, not a diagnosis.",
+  baselineLabel: 'Baseline: Quick Vibe Check - 3:05 PM',
+  sessionNote: 'A few session cues have changed from your starting point, and this session has been running for a while without a break. This may be a good time to check in and reset.',
+  disclaimer: 'These signals support your workload picture and do not determine burnout on their own.',
   metrics: [
     { id: 'session-length', label: 'Session length', value: `${focusSessionDurationMinutes} min`, caption: 'Since you started', icon: 'clock' },
     { id: 'break-status', label: 'Break status', value: 'No break yet', caption: 'This session', icon: 'coffee' },
     { id: 'blink-rate', label: 'Blink rate', value: '+18%', caption: 'vs your baseline', icon: 'eye' },
     { id: 'yawning', label: 'Yawning', value: '2', caption: 'in this session', icon: 'smile' },
     { id: 'posture-shifts', label: 'Posture shifts', value: '3', caption: 'in this session', icon: 'user' },
-    { id: 'eye-strain', label: 'Eye strain', value: 'Slight increase', caption: 'vs your baseline', icon: 'info', span: 'full' },
+    { id: 'eye-closure', label: 'Eye closure', value: 'Slight increase', caption: 'vs your baseline', icon: 'info' },
   ] satisfies FocusMetric[],
 };
 
 export const focusSuggestion = {
   title: 'Take a 5-minute break',
-  subtitle: 'A short break may help you recharge before things feel overwhelming.',
+  subtitle: "You've been studying for 52 minutes without a break. A short reset may help before continuing.",
 };
 
 export type RiskTier = 'high' | 'medium' | 'manageable';
@@ -133,24 +151,37 @@ export type SleepDay = { day: string; hours: number };
 export type RiskTrendPoint = { id: string; label: string; value: number };
 
 export const riskAnalysis = {
-  score: 87,
-  status: 'High Risk',
-  changeLabel: 'Higher than usual',
-  caption: 'Your current workload and recovery patterns may be unsustainable if this continues.',
-  updatedLabel: 'Updated just now',
+  score: 108,
+  status: 'High workload',
+  changeLabel: 'Above realistic capacity',
+  caption: 'Your workload may be hard to sustain today. Several factors are putting pressure on your available capacity.',
+  updatedLabel: 'Based on today\'s demo plan',
+  capacity: {
+    workloadPercent: 108,
+    plannedDemand: '8.6 h',
+    availableCapacity: '7.0 h',
+    recoveryPlanned: '20 min',
+    status: 'High workload',
+  },
   dimensions: [
-    { id: 'mental', label: 'Mental', value: 85, tier: 'high' },
-    { id: 'time', label: 'Time', value: 72, tier: 'high' },
-    { id: 'physical', label: 'Physical', value: 60, tier: 'medium' },
-    { id: 'social', label: 'Social', value: 45, tier: 'medium' },
-    { id: 'errands', label: 'Errands', value: 30, tier: 'manageable' },
+    { id: 'mental', label: 'Mental', value: 88, tier: 'high' },
+    { id: 'time', label: 'Time', value: 82, tier: 'high' },
+    { id: 'physical', label: 'Physical', value: 54, tier: 'medium' },
+    { id: 'social', label: 'Social', value: 41, tier: 'manageable' },
+    { id: 'errands', label: 'Errands', value: 32, tier: 'manageable' },
   ] satisfies RiskDimension[],
   factors: [
-    { id: 'deadline-compression', label: 'Deadline compression', detail: '3 major deadlines within 5 days', icon: 'deadline' },
-    { id: 'mental-workload', label: 'High mental workload', detail: 'Multiple cognitively demanding tasks', icon: 'brain' },
-    { id: 'insufficient-recovery', label: 'Insufficient recovery', detail: "You've had fewer than 6 hours of sleep for 3 days", icon: 'sleep' },
-    { id: 'increased-commitments', label: 'Increased commitments', detail: 'More social and extracurricular activities this week', icon: 'social' },
+    { id: 'deadline-compression', label: 'Deadline compression', detail: '3 important deadlines within 5 days', icon: 'deadline' },
+    { id: 'mental-workload', label: 'High mental demand', detail: '4 cognitively demanding tasks today', icon: 'brain' },
+    { id: 'insufficient-recovery', label: 'Low recovery', detail: 'Only 20 min of recovery across a long day', icon: 'sleep' },
+    { id: 'increased-commitments', label: 'Multiple commitments', detail: 'Study, project, and personal tasks overlap', icon: 'social' },
   ] satisfies RiskFactor[],
+  drivers: [
+    'FIT3143 deep work — high demand',
+    'Group project — medium demand',
+    '8.6 h planned vs 7.0 h capacity',
+    'Recovery below recommended level',
+  ],
   deadlines: [
     { id: 'marketing-assignment', date: 'Aug 12', label: 'Marketing assignment' },
     { id: 'ux-report', date: 'Aug 14', label: 'UX Report' },
@@ -169,11 +200,11 @@ export const riskAnalysis = {
   recommendedSleepHours: 8,
   commitmentTags: ['Club events', 'Group projects', 'Personal errands'],
   weeklyTrend: [
-    { id: 'jul-21', label: 'Jul 21', value: 58 },
-    { id: 'jul-28', label: 'Jul 28', value: 66 },
-    { id: 'aug-4', label: 'Aug 4', value: 74 },
-    { id: 'aug-11', label: 'Aug 11', value: 80 },
-    { id: 'current', label: 'Now', value: 87 },
+    { id: 'jul-21', label: 'Jul 21', value: 72 },
+    { id: 'jul-28', label: 'Jul 28', value: 80 },
+    { id: 'aug-4', label: 'Aug 4', value: 94 },
+    { id: 'aug-11', label: 'Aug 11', value: 102 },
+    { id: 'current', label: 'Now', value: 108 },
   ] satisfies RiskTrendPoint[],
-  keyInsight: 'Your workload and risk have been increasing over the past two weeks, mainly due to deadline compression and reduced recovery time.',
+  keyInsight: 'Today is being driven by deadline compression, high mental demand, and too little recovery time.',
 };

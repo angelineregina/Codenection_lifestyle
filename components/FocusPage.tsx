@@ -18,11 +18,11 @@ export function FocusPage({ onSettingsClick, onCompareClick, onSaveMyDay }: Focu
     <main className="app-main">
       <FocusHeader onSettingsClick={onSettingsClick} />
       <section className="focus-content" aria-label="Focus Guard session">
-        <SessionPreviewCard durationMinutes={focusSession.durationMinutes} compareLabel={focusSession.compareLabel} onCompareClick={onCompareClick} />
+        <SessionPreviewCard durationMinutes={focusSession.durationMinutes} compareLabel={focusSession.compareLabel} baselineLabel={focusSession.baselineLabel} onCompareClick={onCompareClick} />
         <SessionCheckInCard metrics={focusSession.metrics} />
-        <FatigueBanner note={focusSession.fatigueNote} />
+        <FatigueBanner note={focusSession.sessionNote} disclaimer={focusSession.disclaimer} />
         <FocusSmartSuggestionCard suggestion={focusSuggestion} onSaveMyDay={onSaveMyDay} />
-        <p className="demo-note">Demo data · Focus Guard offers cues to notice, not a diagnosis.</p>
+        <p className="demo-note">Demo data - Focus Guard shows supporting session cues only.</p>
       </section>
     </main>
   );

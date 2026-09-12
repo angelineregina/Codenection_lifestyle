@@ -1,4 +1,5 @@
-import { PlaceholderPage } from '@/components/PlaceholderPage';
+import { WhatIfSimulator } from '@/components/WhatIfSimulator';
+
 export default function WhatIfPage() {
-  return <PlaceholderPage title="What-if Simulator" description="Explore possible changes to your day in the next prototype step." />;
+  return <WhatIfSimulator />;
 }
