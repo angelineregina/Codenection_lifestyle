@@ -33,7 +33,7 @@ export default function Home() {
 
   return (
     <>
-      <HomePage completedIds={completedIds} confirmedIds={confirmedIds} expanded={expanded} suggestionApplied={suggestionApplied} onProfileClick={() => openSheet('profile')} onEnergyClick={() => openSheet('energy')} onCapacityClick={() => openSheet('capacity')} onMoodClick={() => openSheet('mood')} onSustainabilityClick={() => router.push('/risk')} onToggleTask={handleToggleTask} onToggleExpanded={() => setExpanded((value) => !value)} onSaveSuggestion={() => router.push('/save-my-day')} />
+      <HomePage completedIds={completedIds} confirmedIds={confirmedIds} expanded={expanded} suggestionApplied={suggestionApplied} onProfileClick={() => openSheet('profile')} onEnergyClick={() => openSheet('energy')} onCapacityClick={() => openSheet('capacity')} onMoodClick={() => openSheet('mood')} onSustainabilityClick={() => router.push('/risk')} onToggleTask={handleToggleTask} onToggleExpanded={() => setExpanded((value) => !value)} onSaveSuggestion={() => router.push('/plan')} />
       {sheetContent && <BottomSheet open={Boolean(activeSheet)} title={sheetContent.title} eyebrow={sheetContent.eyebrow} onClose={closeSheet}>{sheetContent.content}</BottomSheet>}
     </>
   );

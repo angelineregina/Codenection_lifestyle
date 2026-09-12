@@ -9,7 +9,7 @@ export default function Focus() {
     <FocusPage
       onSettingsClick={() => console.log('Focus Guard settings clicked')}
       onCompareClick={() => console.log('Compared with your Quick Vibe Check clicked')}
-      onSaveMyDay={() => router.push('/save-my-day')}
+      onSaveMyDay={() => router.push('/plan')}
     />
   );
 }
