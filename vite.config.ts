@@ -45,6 +45,8 @@ export default defineConfig(async () => {
   const { cloudflare } = await import('@cloudflare/vite-plugin');
 
   return {
+    // Vinext dynamically reads named router exports in production.
+    build: { rolldownOptions: { preserveEntrySignatures: 'strict' as const } },
     css: { postcss: { plugins: [tailwindcss()] } },
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }

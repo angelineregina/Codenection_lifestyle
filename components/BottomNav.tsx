@@ -1,12 +1,21 @@
 'use client';
 
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { BarChart3, CalendarDays, Heart, Home, MoreHorizontal } from 'lucide-react';
 
-export type PageKey = 'home' | 'b' | 'c' | 'd' | 'e';
-const items: Array<{ key: PageKey; label: string; icon: typeof Home }> = [
-  { key: 'home', label: 'Home', icon: Home }, { key: 'b', label: 'B', icon: CalendarDays }, { key: 'c', label: 'C', icon: Heart }, { key: 'd', label: 'D', icon: BarChart3 }, { key: 'e', label: 'E', icon: MoreHorizontal },
+const items = [
+  { href: '/', label: 'Home', icon: Home },
+  { href: '/plan', label: 'Plan', icon: CalendarDays },
+  { href: '/focus', label: 'Focus', icon: Heart },
+  { href: '/insights', label: 'Insights', icon: BarChart3 },
+  { href: '/more', label: 'More', icon: MoreHorizontal },
 ];
 
-export function BottomNav({ activePage, onNavigate }: { activePage: PageKey; onNavigate: (page: PageKey) => void }) {
-  return <nav className="bottom-nav" aria-label="Primary navigation">{items.map(({ key, label, icon: Icon }) => { const active = key === activePage; return <button className={`nav-item ${active ? 'is-active' : ''}`} type="button" key={key} onClick={() => onNavigate(key)} aria-current={active ? 'page' : undefined}><Icon size={20} strokeWidth={active ? 2.5 : 1.9} /><span>{label}</span></button>; })}</nav>;
+export function BottomNav() {
+  const pathname = usePathname();
+  return <nav className="bottom-nav" aria-label="Primary navigation">{items.map(({ href, label, icon: Icon }) => {
+    const active = pathname === href;
+    return <Link className={`nav-item ${active ? 'is-active' : ''}`} href={href} key={href} aria-current={active ? 'page' : undefined}><Icon size={20} strokeWidth={active ? 2.5 : 1.9} /><span>{label}</span></Link>;
+  })}</nav>;
 }
