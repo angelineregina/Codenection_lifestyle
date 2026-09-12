@@ -208,3 +208,190 @@ export const riskAnalysis = {
   ] satisfies RiskTrendPoint[],
   keyInsight: 'Today is being driven by deadline compression, high mental demand, and too little recovery time.',
 };
+
+export type FriendStatus = 'focused' | 'on-a-break' | 'in-class' | 'offline';
+export type AvatarTone = 'blue' | 'violet' | 'mint' | 'orange';
+export type FriendActivity = { task: string; timeRange: string };
+export type FriendUpdate = { id: string; text: string; timeAgo: string };
+
+export type Friend = {
+  id: string;
+  name: string;
+  initials: string;
+  tone: AvatarTone;
+  status: FriendStatus;
+  statusDuration: string;
+  lastSeen: string;
+  streakDays: number;
+  moodDelta: string;
+  focusMinutesToday: number;
+  activity: FriendActivity | null;
+  statusQuote: string;
+  updates: FriendUpdate[];
+};
+
+export const friendStatusLabels: Record<FriendStatus, string> = {
+  focused: 'Focused',
+  'on-a-break': 'On a break',
+  'in-class': 'In class',
+  offline: 'Offline',
+};
+
+export const friends: Friend[] = [
+  {
+    id: 'jia-en',
+    name: 'Jia En',
+    initials: 'JE',
+    tone: 'blue',
+    status: 'focused',
+    statusDuration: 'for 25 min',
+    lastSeen: 'Online now',
+    streakDays: 12,
+    moodDelta: '+8% calmer this week',
+    focusMinutesToday: 95,
+    activity: { task: 'Deep work · FIT3143', timeRange: '2:00 – 4:00 PM' },
+    statusQuote: 'In the zone, one task at a time.',
+    updates: [
+      { id: 'jia-en-1', text: 'Completed a 90-minute focus session', timeAgo: '12 min ago' },
+      { id: 'jia-en-2', text: 'Hit a 12-day streak', timeAgo: '3 hr ago' },
+    ],
+  },
+  {
+    id: 'marcus',
+    name: 'Marcus',
+    initials: 'M',
+    tone: 'orange',
+    status: 'on-a-break',
+    statusDuration: 'for 10 min',
+    lastSeen: 'Online now',
+    streakDays: 5,
+    moodDelta: 'Steady mood this week',
+    focusMinutesToday: 60,
+    activity: { task: 'Recovery break', timeRange: '3:00 – 3:15 PM' },
+    statusQuote: 'Recharging before the next block.',
+    updates: [
+      { id: 'marcus-1', text: 'Took a recovery break', timeAgo: '10 min ago' },
+      { id: 'marcus-2', text: 'Logged a study session', timeAgo: '2 hr ago' },
+    ],
+  },
+  {
+    id: 'alya',
+    name: 'Alya',
+    initials: 'A',
+    tone: 'violet',
+    status: 'in-class',
+    statusDuration: 'for 40 min',
+    lastSeen: 'Online now',
+    streakDays: 8,
+    moodDelta: 'Calmer than last week',
+    focusMinutesToday: 45,
+    activity: { task: 'BIO2010 Lecture', timeRange: '1:30 – 3:00 PM' },
+    statusQuote: 'Taking notes, staying present.',
+    updates: [
+      { id: 'alya-1', text: "Checked in before class", timeAgo: '40 min ago' },
+      { id: 'alya-2', text: "Completed today's reading", timeAgo: '5 hr ago' },
+    ],
+  },
+  {
+    id: 'daniel',
+    name: 'Daniel',
+    initials: 'D',
+    tone: 'mint',
+    status: 'focused',
+    statusDuration: 'for 5 min',
+    lastSeen: 'Online now',
+    streakDays: 3,
+    moodDelta: 'Mood steady today',
+    focusMinutesToday: 20,
+    activity: { task: 'Assignment draft', timeRange: '3:10 – 4:10 PM' },
+    statusQuote: 'Just getting started on this one.',
+    updates: [
+      { id: 'daniel-1', text: 'Started a new focus session', timeAgo: '5 min ago' },
+    ],
+  },
+  {
+    id: 'wei-lin',
+    name: 'Wei Lin',
+    initials: 'WL',
+    tone: 'blue',
+    status: 'offline',
+    statusDuration: '',
+    lastSeen: 'Last seen 2 hr ago',
+    streakDays: 15,
+    moodDelta: 'Had a calmer week',
+    focusMinutesToday: 0,
+    activity: null,
+    statusQuote: 'Taking some time off today.',
+    updates: [
+      { id: 'wei-lin-1', text: 'Completed a 15-day streak milestone', timeAgo: 'yesterday' },
+    ],
+  },
+  {
+    id: 'siti',
+    name: 'Siti',
+    initials: 'S',
+    tone: 'orange',
+    status: 'offline',
+    statusDuration: '',
+    lastSeen: 'Last seen 5 hr ago',
+    streakDays: 2,
+    moodDelta: 'Stress easing this week',
+    focusMinutesToday: 0,
+    activity: null,
+    statusQuote: 'Back tomorrow, feeling okay.',
+    updates: [
+      { id: 'siti-1', text: 'Sent you a thank-you message', timeAgo: '5 hr ago' },
+    ],
+  },
+  {
+    id: 'kenji',
+    name: 'Kenji',
+    initials: 'K',
+    tone: 'violet',
+    status: 'offline',
+    statusDuration: '',
+    lastSeen: 'Last seen yesterday',
+    streakDays: 0,
+    moodDelta: 'New to check-ins',
+    focusMinutesToday: 0,
+    activity: null,
+    statusQuote: 'Just getting started with focus tracking.',
+    updates: [
+      { id: 'kenji-1', text: 'Joined Beating the Burnout', timeAgo: 'yesterday' },
+    ],
+  },
+  {
+    id: 'rachel',
+    name: 'Rachel',
+    initials: 'R',
+    tone: 'mint',
+    status: 'offline',
+    statusDuration: '',
+    lastSeen: 'Last seen 2 days ago',
+    streakDays: 21,
+    moodDelta: 'Consistently steady',
+    focusMinutesToday: 0,
+    activity: null,
+    statusQuote: 'Taking a short break from check-ins.',
+    updates: [
+      { id: 'rachel-1', text: 'Hit a 21-day streak', timeAgo: '2 days ago' },
+    ],
+  },
+];
+
+export type QuickMessageIcon = 'heart' | 'sparkles' | 'coffee' | 'thumbsUp' | 'wave' | 'sun';
+export type QuickMessage = { id: string; text: string; icon: QuickMessageIcon };
+
+export const quickMessages: QuickMessage[] = [
+  { id: 'thinking-of-you', text: 'Thinking of you today', icon: 'heart' },
+  { id: 'proud', text: "Proud of how you're showing up", icon: 'sparkles' },
+  { id: 'break-reminder', text: 'Take a short break if you need one', icon: 'coffee' },
+  { id: 'cheering', text: 'Cheering you on!', icon: 'thumbsUp' },
+  { id: 'here-for-you', text: "I'm here if you need to talk", icon: 'wave' },
+  { id: 'great-day', text: 'Hope you have a great day', icon: 'sun' },
+];
+
+export const socialQuote = {
+  text: 'Small check-ins build strong circles. A little support goes a long way.',
+  author: 'Beating the Burnout',
+};

@@ -436,6 +436,114 @@ button:focus-visible { outline: 3px solid rgba(40,119,239,.32); outline-offset: 
 .what-if-plan-link { display: inline-flex; align-items: center; justify-content: center; gap: 5px; margin-top: 2px; color: #6b84b2; font-size: 10px; font-weight: 800; text-decoration: none; }
 .what-if-plan-link:hover { color: var(--blue); }
 
+.friend-avatar { position: relative; display: inline-grid; flex: none; place-items: center; border-radius: 50%; color: #fff; font-weight: 800; }
+.friend-avatar--sm { width: 30px; height: 30px; font-size: 10px; border: 2px solid #fff; }
+.friend-avatar--md { width: 42px; height: 42px; font-size: 12px; border: 2px solid #fff; }
+.friend-avatar--lg { width: 78px; height: 78px; font-size: 22px; border: 3px solid #fff; box-shadow: 0 8px 20px rgba(40,119,239,.15); }
+.friend-avatar--blue { background: linear-gradient(140deg, #4d94f7, #2360d8); }
+.friend-avatar--violet { background: linear-gradient(140deg, #8a72f0, #6247cf); }
+.friend-avatar--mint { background: linear-gradient(140deg, #34c39b, #159b79); }
+.friend-avatar--orange { background: linear-gradient(140deg, #f5a758, #e0812c); }
+.status-dot { position: absolute; right: -1px; bottom: -1px; width: 11px; height: 11px; border: 2px solid #fff; border-radius: 50%; }
+.friend-avatar--sm .status-dot { width: 9px; height: 9px; border-width: 1.5px; }
+.friend-avatar--lg .status-dot { width: 16px; height: 16px; border-width: 3px; }
+.status-dot--focused { background: #2877ef; }
+.status-dot--break { background: #ee8a35; }
+.status-dot--class { background: #6954e8; }
+.status-dot--offline { background: #b7c3dc; }
+
+.online-card { display: flex; width: 100%; align-items: center; gap: 12px; padding: 15px 14px; cursor: pointer; text-align: left; }
+.online-avatar-stack { display: flex; flex: none; }
+.online-avatar-stack .friend-avatar { margin-left: -10px; }
+.online-avatar-stack .friend-avatar:first-child { margin-left: 0; }
+.online-card-copy { min-width: 0; }
+.online-card-copy strong { display: block; color: var(--ink); font-size: 13px; }
+.online-card-copy small { display: block; margin-top: 2px; color: #7a90b7; font-size: 10.5px; }
+.support-banner { display: flex; align-items: center; gap: 11px; padding: 14px 13px; border: 1px solid #f6cfd8; border-radius: var(--radius-card); background: linear-gradient(135deg, #fff3f5, #fff8f6); }
+.support-banner-icon { display: grid; width: 36px; height: 36px; flex: none; place-items: center; border-radius: 12px; color: #e0577a; background: #ffe1e9; }
+.support-banner-copy { min-width: 0; flex: 1; }
+.support-banner-copy strong { display: block; color: var(--ink); font-size: 12px; }
+.support-banner-copy p { margin: 3px 0 0; color: #8a7480; font-size: 9.5px; line-height: 1.35; }
+.update-section { padding: 15px 13px 13px; }
+.update-list { display: grid; gap: 4px; }
+.update-row { display: flex; align-items: center; gap: 10px; padding: 8px 4px; border-radius: 11px; transition: background .18s ease; }
+.update-row:hover { background: #f7faff; }
+.update-row-copy { display: grid; min-width: 0; flex: 1; gap: 1px; }
+.update-row-copy strong { color: var(--ink); font-size: 11px; }
+.update-row-copy span { overflow: hidden; color: #7186ae; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.update-row-copy small { color: #9aabca; font-size: 9px; }
+.reaction-button { display: grid; width: 28px; height: 28px; flex: none; place-items: center; border: 0; border-radius: 50%; color: #a9b8d6; background: none; cursor: pointer; transition: color .18s ease, background .18s ease; }
+.reaction-button:hover { color: #e0577a; background: #ffeef1; }
+.reaction-button.is-liked { color: #e0577a; }
+.quote-card { display: grid; justify-items: center; gap: 8px; padding: 20px 18px; border-radius: var(--radius-card); color: #5476b3; background: linear-gradient(135deg, #eef6ff, #f7fbff); text-align: center; }
+.quote-card svg { color: #a9c6f5; }
+.quote-card p { margin: 0; max-width: 280px; font-size: 12.5px; font-style: italic; line-height: 1.5; }
+.quote-card span { color: #93a8cc; font-size: 9.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+
+.search-field { display: flex; align-items: center; gap: 8px; margin-top: 16px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; color: #8598bd; background: #fff; }
+.search-field svg { flex: none; }
+.search-field input { flex: 1; min-width: 0; border: 0; color: var(--ink); background: none; font-size: 12px; outline: none; }
+.search-field input::placeholder { color: #a3b3d1; }
+.friend-list-section { padding: 15px 12px 12px; }
+.friend-row-list { display: grid; gap: 6px; }
+.friend-row { display: flex; align-items: center; gap: 8px; padding: 6px 4px; border-radius: 12px; transition: background .18s ease; }
+.friend-row:hover { background: #f7faff; }
+.friend-row-main { display: flex; flex: 1; align-items: center; gap: 10px; min-width: 0; padding: 4px; border: 0; background: none; cursor: pointer; text-align: left; }
+.friend-row-copy { display: grid; min-width: 0; gap: 1px; }
+.friend-row-copy strong { overflow: hidden; color: var(--ink); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.friend-row-copy small { overflow: hidden; color: #8194b8; font-size: 9.5px; text-overflow: ellipsis; white-space: nowrap; }
+.friend-message-button { flex: none; min-height: 30px; padding: 0 11px; font-size: 9.5px; }
+
+.friend-hero { display: grid; justify-items: center; gap: 6px; padding: 6px 0 4px; text-align: center; }
+.friend-hero h1 { margin: 6px 0 0; color: var(--ink); font-size: 21px; letter-spacing: -.04em; }
+.friend-hero-status { color: #6d83ad; font-size: 11px; font-weight: 700; }
+.friend-hero-quote { max-width: 260px; margin: 4px 0 0; color: #8a9cc2; font-size: 11.5px; font-style: italic; line-height: 1.4; }
+.friend-stat-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+.friend-stat-grid div { display: grid; justify-items: center; gap: 6px; padding: 13px 8px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,.97); text-align: center; }
+.friend-stat-icon { display: grid; width: 26px; height: 26px; place-items: center; border-radius: 9px; color: #2877ef; background: #e4f0ff; }
+.friend-stat-grid strong { overflow: hidden; max-width: 100%; color: var(--ink); font-size: 11.5px; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+.friend-stat-grid small { color: #93a5c6; font-size: 8.5px; }
+.currently-card { padding: 14px 13px; }
+.currently-activity { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.currently-activity-icon { display: grid; width: 34px; height: 34px; flex: none; place-items: center; border-radius: 11px; color: #2877ef; background: #e4f0ff; }
+.currently-activity strong { display: block; color: var(--ink); font-size: 12px; }
+.currently-activity small { color: #8194b8; font-size: 10px; }
+.update-timeline { display: grid; gap: 12px; margin-top: 4px; }
+.update-timeline-row { display: flex; gap: 10px; }
+.update-timeline-dot { width: 7px; height: 7px; margin-top: 5px; flex: none; border-radius: 50%; background: #a9c6f5; }
+.update-timeline-copy { display: grid; gap: 2px; }
+.update-timeline-copy span { color: var(--ink); font-size: 11.5px; line-height: 1.35; }
+.update-timeline-copy small { color: #93a5c6; font-size: 9.5px; }
+.friend-detail-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.friend-detail-actions button { width: 100%; }
+
+.support-intro { display: grid; justify-items: center; gap: 6px; padding: 10px 20px 4px; text-align: center; }
+.support-intro-icon { display: grid; width: 60px; height: 60px; place-items: center; margin-bottom: 4px; border-radius: 20px; color: #e0577a; background: #ffe1e9; box-shadow: 0 10px 22px rgba(224,87,122,.14); }
+.support-intro h2 { max-width: 260px; margin: 0; color: var(--ink); font-size: 17px; line-height: 1.25; letter-spacing: -.03em; }
+.support-intro p { max-width: 260px; margin: 0; color: #8098c2; font-size: 11.5px; line-height: 1.4; }
+.action-segmented-control--two { grid-template-columns: repeat(2, 1fr); }
+.quick-message-list { display: grid; gap: 7px; }
+.quick-message-row { display: flex; align-items: center; gap: 10px; width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 13px; color: var(--ink); background: rgba(255,255,255,.97); cursor: pointer; text-align: left; font-size: 11.5px; font-weight: 700; transition: border-color .18s ease, background .18s ease, transform .18s ease; }
+.quick-message-row:hover { border-color: #c9dcfa; transform: translateY(-1px); }
+.quick-message-row.is-selected { border-color: #9dc6fa; background: #edf5ff; box-shadow: inset 3px 0 0 var(--blue); }
+.quick-message-icon { display: grid; width: 30px; height: 30px; flex: none; place-items: center; border-radius: 10px; color: #2877ef; background: #e4f0ff; }
+.custom-message-card { padding: 4px; }
+.custom-message-input { width: 100%; min-height: 120px; padding: 12px; border: 0; border-radius: inherit; color: var(--ink); background: none; font: inherit; font-size: 12px; line-height: 1.5; outline: none; resize: vertical; }
+.custom-message-input::placeholder { color: #a3b3d1; }
+.send-support-button { width: 100%; min-height: 42px; }
+
+.invite-row { display: flex; align-items: center; gap: 11px; padding: 13px; }
+.invite-row-copy { min-width: 0; flex: 1; }
+.invite-row-copy strong { display: block; color: var(--ink); font-size: 12px; }
+.invite-row-copy small { display: block; margin-top: 2px; color: #8194b8; font-size: 9.5px; }
+.code-section { padding: 14px 13px; }
+.code-input-row { display: flex; gap: 8px; margin-top: 10px; }
+.code-input-row input { flex: 1; min-width: 0; height: 38px; padding: 0 12px; border: 1px solid var(--line); border-radius: 11px; color: var(--ink); background: #fff; font-size: 12px; outline: none; }
+.code-input-row input::placeholder { color: #a3b3d1; }
+.code-input-row .primary-button { flex: none; min-height: 38px; }
+.setting-row-label { display: inline-flex; align-items: center; gap: 10px; }
+.setting-row--last { border-bottom: 0; }
+
 .placeholder-page { display: flex; height: 100%; flex-direction: column; align-items: center; justify-content: center; padding: 32px; text-align: center; }
 .placeholder-icon { display: grid; width: 66px; height: 66px; place-items: center; margin-bottom: 21px; border-radius: 22px; color: var(--blue); background: #deedff; box-shadow: 0 10px 20px rgba(40,119,239,.09); }
 .placeholder-page h1 { margin: 0; color: var(--ink); font-size: 29px; letter-spacing: -.055em; }

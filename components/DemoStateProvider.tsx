@@ -8,11 +8,19 @@ function useDemoStateValue() {
   const [expanded, setExpanded] = useState(false);
   const [suggestionApplied, setSuggestionApplied] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set(schedule.filter((item) => item.completed).map((item) => item.id)));
   const [confirmedIds, setConfirmedIds] = useState<Set<string>>(() => new Set());
   const toastTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => () => { if (toastTimeout.current) clearTimeout(toastTimeout.current); }, []);
+
+  const showToast = useCallback((message: string) => {
+    setToastMessage(message);
+    setToastVisible(true);
+    if (toastTimeout.current) clearTimeout(toastTimeout.current);
+    toastTimeout.current = setTimeout(() => setToastVisible(false), 3200);
+  }, []);
 
   const handleToggleTask = useCallback((id: string) => {
     setCompletedIds((current) => {
@@ -27,19 +35,17 @@ function useDemoStateValue() {
     setSuggestionApplied(true);
     setCompletedIds((current) => new Set(current).add('recovery-break'));
     setConfirmedIds((current) => new Set(current).add('recovery-break'));
-    setToastVisible(true);
-    if (toastTimeout.current) clearTimeout(toastTimeout.current);
-    toastTimeout.current = setTimeout(() => setToastVisible(false), 3200);
-  }, []);
+    showToast('Your day has been adjusted.');
+  }, [showToast]);
 
-  return { expanded, setExpanded, suggestionApplied, completedIds, confirmedIds, handleToggleTask, handleApplySuggestion, toastVisible };
+  return { expanded, setExpanded, suggestionApplied, completedIds, confirmedIds, handleToggleTask, handleApplySuggestion, toastVisible, toastMessage, showToast };
 }
 
 const DemoStateContext = createContext<ReturnType<typeof useDemoStateValue> | null>(null);
 
 export function DemoStateProvider({ children }: { children: ReactNode }) {
   const state = useDemoStateValue();
-  return <DemoStateContext.Provider value={state}>{children}<Toast visible={state.toastVisible} message="Your day has been adjusted." /></DemoStateContext.Provider>;
+  return <DemoStateContext.Provider value={state}>{children}<Toast visible={state.toastVisible} message={state.toastMessage} /></DemoStateContext.Provider>;
 }
 
 export function useDemoState() {
