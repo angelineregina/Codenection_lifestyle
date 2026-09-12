@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, CalendarClock, Clock3, Sparkles, Users } from 'lucide-react';
+import { useDemoState } from '@/components/DemoStateProvider';
 import { riskAnalysis, type RiskFactorIcon, type RiskTier } from '@/data/demoData';
 
 const factorIconMap: Record<RiskFactorIcon, typeof CalendarClock> = {
@@ -18,7 +19,11 @@ const tierLabelMap: Record<RiskTier, string> = {
 };
 
 export function RiskAnalysisPage() {
-  const { capacity, dimensions, factors, drivers } = riskAnalysis;
+  const { workloadSnapshot } = useDemoState();
+  const { factors } = riskAnalysis;
+  const { drivers } = workloadSnapshot;
+  const capacity = { ...riskAnalysis.capacity, workloadPercent: workloadSnapshot.workloadPercent, plannedDemand: workloadSnapshot.plannedDemand, availableCapacity: workloadSnapshot.availableCapacity, recoveryPlanned: workloadSnapshot.recoveryPlanned, status: workloadSnapshot.status };
+  const dimensions = workloadSnapshot.dimensions;
 
   return (
     <main className="app-main risk-analysis-page">

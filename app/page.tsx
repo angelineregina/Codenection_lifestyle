@@ -11,7 +11,7 @@ type SheetKey = 'profile' | 'energy' | 'capacity' | 'mood' | null;
 
 export default function Home() {
   const router = useRouter();
-  const { expanded, setExpanded, suggestionApplied, completedIds, confirmedIds, handleToggleTask } = useDemoState();
+  const { expanded, setExpanded, suggestionApplied, completedIds, confirmedIds, handleToggleTask, scheduleItems, workloadSustainabilitySnapshot } = useDemoState();
   const [activeSheet, setActiveSheet] = useState<SheetKey>(null);
   const openSheet = useCallback((sheet: Exclude<SheetKey, null>) => setActiveSheet(sheet), []);
   const closeSheet = useCallback(() => setActiveSheet(null), []);
@@ -33,7 +33,7 @@ export default function Home() {
 
   return (
     <>
-      <HomePage completedIds={completedIds} confirmedIds={confirmedIds} expanded={expanded} suggestionApplied={suggestionApplied} onProfileClick={() => openSheet('profile')} onEnergyClick={() => openSheet('energy')} onCapacityClick={() => openSheet('capacity')} onMoodClick={() => openSheet('mood')} onSustainabilityClick={() => router.push('/risk')} onToggleTask={handleToggleTask} onToggleExpanded={() => setExpanded((value) => !value)} onSaveSuggestion={() => router.push('/plan')} />
+      <HomePage scheduleItems={scheduleItems} sustainability={workloadSustainabilitySnapshot} completedIds={completedIds} confirmedIds={confirmedIds} expanded={expanded} suggestionApplied={suggestionApplied} onProfileClick={() => openSheet('profile')} onEnergyClick={() => openSheet('energy')} onCapacityClick={() => openSheet('capacity')} onMoodClick={() => openSheet('mood')} onSustainabilityClick={() => router.push('/risk')} onToggleTask={handleToggleTask} onToggleExpanded={() => setExpanded((value) => !value)} onSaveSuggestion={() => router.push('/plan')} />
       {sheetContent && <BottomSheet open={Boolean(activeSheet)} title={sheetContent.title} eyebrow={sheetContent.eyebrow} onClose={closeSheet}>{sheetContent.content}</BottomSheet>}
     </>
   );

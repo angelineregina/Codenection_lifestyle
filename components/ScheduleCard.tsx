@@ -1,6 +1,7 @@
 'use client';
 
-import { BriefcaseBusiness, Check, ChevronDown, ChevronRight, Circle, Coffee, Dumbbell, FileText, Laptop, Users } from 'lucide-react';
+import Link from 'next/link';
+import { BriefcaseBusiness, Check, ChevronDown, ChevronRight, Circle, Coffee, Dumbbell, FileText, Laptop, Plus, Users } from 'lucide-react';
 import type { ScheduleIcon, ScheduleItem } from '@/data/demoData';
 
 const iconMap: Record<ScheduleIcon, typeof BriefcaseBusiness> = { strategy: FileText, focus: Laptop, recovery: Coffee, client: Users, health: Dumbbell, planning: BriefcaseBusiness, reset: Coffee };
@@ -20,7 +21,7 @@ export function ScheduleCard({ items, completedIds, confirmedIds, expanded, onTo
 
   return (
     <section className="surface-card schedule-card" aria-labelledby="schedule-title">
-      <div className="section-heading"><div><p className="section-kicker">Today</p><h2 id="schedule-title">Your Schedule</h2></div><button className="text-button" type="button" onClick={onToggleExpanded}>{expanded ? 'Show less' : 'View all'}{expanded ? <ChevronDown size={15} /> : <ChevronRight size={15} />}</button></div>
+      <div className="section-heading"><div><p className="section-kicker">Today</p><h2 id="schedule-title">Your Schedule</h2></div><div className="schedule-heading-actions"><Link className="text-button" href="/assess"><Plus size={14} />Add</Link><button className="text-button" type="button" onClick={onToggleExpanded}>{expanded ? 'Show less' : 'View all'}{expanded ? <ChevronDown size={15} /> : <ChevronRight size={15} />}</button></div></div>
       <div className="schedule-list">
         {visibleItems.map((item) => {
           const Icon = iconMap[item.icon];

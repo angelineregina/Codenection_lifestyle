@@ -17,6 +17,24 @@ export type ScheduleItem = {
   completed: boolean;
 };
 
+export type CommitmentPriority = 'High' | 'Medium' | 'Low';
+export type CommitmentDate = 'Today' | 'Tomorrow' | 'This week';
+export type AssessedCommitment = {
+  id: string;
+  title: string;
+  date: CommitmentDate;
+  durationMinutes: number;
+  durationLabel: string;
+  priority: CommitmentPriority;
+  mentalDemand: number;
+  physicalDemand: number;
+  socialDemand: number;
+  errandsDemand: number;
+  canMove: boolean;
+};
+
+export type NewCommitment = Omit<AssessedCommitment, 'id'>;
+
 export const user = {
   name: 'See Eng',
   greeting: 'Good afternoon',
@@ -208,6 +226,67 @@ export const riskAnalysis = {
   ] satisfies RiskTrendPoint[],
   keyInsight: 'Today is being driven by deadline compression, high mental demand, and too little recovery time.',
 };
+
+export type WorkloadSnapshot = {
+  workloadPercent: number;
+  plannedDemand: string;
+  availableCapacity: string;
+  recoveryPlanned: string;
+  status: string;
+  explanation: string;
+  factors: string[];
+  drivers: string[];
+  dimensions: RiskDimension[];
+};
+
+function clampWorkloadValue(value: number) {
+  return Math.max(0, Math.min(100, Math.round(value)));
+}
+
+export function calculateWorkloadSnapshot(commitments: AssessedCommitment[]): WorkloadSnapshot {
+  const availableCapacityHours = 7;
+  const baseDemandHours = 8.6;
+  const baseWorkloadPercent = 108;
+  const addedHours = commitments.reduce((total, commitment) => total + commitment.durationMinutes / 60, 0);
+  const plannedDemandHours = baseDemandHours + addedHours;
+  const workloadPercent = Math.round(baseWorkloadPercent + (addedHours / availableCapacityHours) * 100);
+  const getDimensionValue = (key: 'mentalDemand' | 'physicalDemand' | 'socialDemand' | 'errandsDemand', baseValue: number) => {
+    const pressure = commitments.reduce((total, commitment) => total + (commitment[key] - 3) * commitment.durationMinutes, 0);
+    return clampWorkloadValue(baseValue + (pressure / (availableCapacityHours * 60)) * 18);
+  };
+  const dimensions: RiskDimension[] = [
+    { id: 'mental', label: 'Mental', value: getDimensionValue('mentalDemand', 88), tier: 'high' },
+    { id: 'time', label: 'Time', value: clampWorkloadValue(82 + (addedHours / availableCapacityHours) * 100), tier: 'high' },
+    { id: 'physical', label: 'Physical', value: getDimensionValue('physicalDemand', 54), tier: 'medium' },
+    { id: 'social', label: 'Social', value: getDimensionValue('socialDemand', 41), tier: 'manageable' },
+    { id: 'errands', label: 'Errands', value: getDimensionValue('errandsDemand', 32), tier: 'manageable' },
+  ];
+  const hasCommitments = commitments.length > 0;
+  const status = workloadPercent >= 100 ? 'High workload' : workloadPercent >= 85 ? 'Moderate workload' : 'Manageable workload';
+  const factors = hasCommitments ? [
+    workloadSustainability.factors[0],
+    `${commitments.length} added commitment${commitments.length === 1 ? '' : 's'}`,
+    `${plannedDemandHours.toFixed(1)} h planned demand`,
+  ] : workloadSustainability.factors;
+  const drivers = hasCommitments ? [
+    ...riskAnalysis.drivers.slice(0, 1),
+    `Added: ${commitments.map((commitment) => commitment.title).join(', ')}`,
+    `${plannedDemandHours.toFixed(1)} h planned vs ${availableCapacityHours.toFixed(1)} h capacity`,
+    riskAnalysis.drivers[3],
+  ] : riskAnalysis.drivers;
+
+  return {
+    workloadPercent,
+    plannedDemand: `${plannedDemandHours.toFixed(1)} h`,
+    availableCapacity: `${availableCapacityHours.toFixed(1)} h`,
+    recoveryPlanned: riskAnalysis.capacity.recoveryPlanned,
+    status,
+    explanation: hasCommitments ? `${commitments.length} added commitment${commitments.length === 1 ? '' : 's'} now contribute ${addedHours.toFixed(1)} h to today's planned demand.` : workloadSustainability.explanation,
+    factors,
+    drivers,
+    dimensions,
+  };
+}
 
 export type InsightTrendPoint = { label: string; value: number };
 export type RecoveryTrendPoint = { label: string; minutes: number };
