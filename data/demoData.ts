@@ -180,7 +180,7 @@ export const riskAnalysis = {
     'FIT3143 deep work — high demand',
     'Group project — medium demand',
     '8.6 h planned vs 7.0 h capacity',
-    'Recovery below recommended level',
+    '20 min recovery planned across an 8.6 h day',
   ],
   deadlines: [
     { id: 'marketing-assignment', date: 'Aug 12', label: 'Marketing assignment' },

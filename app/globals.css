@@ -310,7 +310,6 @@ button:focus-visible { outline: 3px solid rgba(40,119,239,.32); outline-offset: 
 .risk-back-link:hover { color: var(--blue); background: #fff; transform: translateX(-1px); }
 .risk-title-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .risk-title-row h1 { margin: 0; color: var(--ink); font-size: 25px; letter-spacing: -.055em; }
-.analysis-status-dot { width: 12px; height: 12px; flex: none; border: 3px solid #fff; border-radius: 50%; background: #ee9844; box-shadow: 0 0 0 3px #ffe8cc; }
 .risk-analysis-content { display: grid; gap: 12px; padding: 0 14px 24px; }
 .risk-intro-block { padding: 3px 4px 2px; }
 .risk-intro-label { color: #6d93d0; font-size: 10px; font-weight: 800; letter-spacing: .02em; }

@@ -32,7 +32,6 @@ export function RiskAnalysisPage() {
             <p className="section-kicker">Home · Workload check</p>
             <h1>Workload Analysis</h1>
           </div>
-          <span className="analysis-status-dot" aria-hidden="true" />
         </div>
       </header>
 
@@ -77,7 +76,7 @@ export function RiskAnalysisPage() {
         </section>
 
         <section className="risk-analysis-section driver-section" aria-labelledby="driver-title">
-          <div className="risk-section-heading"><div><p className="section-kicker">Traceable inputs</p><h2 id="driver-title">What is driving the score</h2></div></div>
+          <div className="risk-section-heading"><div><p className="section-kicker">Traceable inputs</p><h2 id="driver-title">What is driving today&apos;s workload</h2></div></div>
           <ul className="driver-list">{drivers.map((driver) => <li key={driver}>{driver}</li>)}</ul>
         </section>
 
