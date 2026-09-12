@@ -8,7 +8,7 @@ const iconMap: Record<FocusMetricIcon, typeof Clock> = { clock: Clock, coffee: C
 export function SessionCheckInCard({ metrics }: { metrics: FocusMetric[] }) {
   return (
     <section className="surface-card checkin-card" aria-labelledby="checkin-title">
-      <div className="checkin-heading"><h2 id="checkin-title">Session Check-in</h2><span className="live-badge">Live session</span></div>
+      <div className="checkin-heading"><h2 id="checkin-title">Session Check-in</h2><span className="live-badge">Session tracking (demo)</span></div>
       <div className="metric-grid">
         {metrics.map((metric) => {
           const Icon = iconMap[metric.icon];
