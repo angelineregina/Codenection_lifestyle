@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { calculateWorkloadSnapshot, schedule, type NewCommitment, workloadSustainability } from '@/data/demoData';
+import { calculateWorkloadSnapshot, schedule, type FocusBaseline, type NewCommitment, workloadSustainability } from '@/data/demoData';
 import { Toast } from '@/components/Toast';
 
 function useDemoStateValue() {
@@ -10,6 +10,7 @@ function useDemoStateValue() {
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [addedCommitments, setAddedCommitments] = useState<NewCommitment[]>([]);
+  const [baseline, setBaselineState] = useState<FocusBaseline | null>(null);
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set(schedule.filter((item) => item.completed).map((item) => item.id)));
   const [confirmedIds, setConfirmedIds] = useState<Set<string>>(() => new Set());
   const toastTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -46,7 +47,11 @@ function useDemoStateValue() {
     setAddedCommitments((current) => [...current, commitment]);
   }, []);
 
-  return { expanded, setExpanded, suggestionApplied, completedIds, confirmedIds, handleToggleTask, handleApplySuggestion, toastVisible, toastMessage, showToast, addCommitment, addedCommitments, scheduleItems, workloadSnapshot, workloadSustainabilitySnapshot };
+  const setBaseline = useCallback((nextBaseline: FocusBaseline) => {
+    setBaselineState(nextBaseline);
+  }, []);
+
+  return { expanded, setExpanded, suggestionApplied, completedIds, confirmedIds, handleToggleTask, handleApplySuggestion, toastVisible, toastMessage, showToast, addCommitment, addedCommitments, scheduleItems, workloadSnapshot, workloadSustainabilitySnapshot, baseline, setBaseline };
 }
 
 const DemoStateContext = createContext<ReturnType<typeof useDemoStateValue> | null>(null);

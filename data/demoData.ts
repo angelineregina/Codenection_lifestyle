@@ -141,6 +141,16 @@ export const focusSession = {
   ] satisfies FocusMetric[],
 };
 
+export type VibeMood = 'Calm' | 'Okay' | 'Tired' | 'Stressed' | 'Busy';
+export type FocusBaseline = {
+  timestamp: string;
+  mood: VibeMood;
+  energy: number;
+  blinkRateBaseline: number;
+  eyeClosureBaseline: string;
+  postureBaseline: string;
+};
+
 export const focusSuggestion = {
   title: 'Take a 5-minute break',
   subtitle: "You've been studying for 52 minutes without a break. A short reset may help before continuing.",
