@@ -27,7 +27,7 @@ export function SocialHomePage() {
       <header className="app-header">
         <div className="brand-row">
           <div className="brand-mark" aria-hidden="true"><Leaf size={17} strokeWidth={2.2} /></div>
-          <span className="brand-name">BEATING THE BURNOUT</span>
+          <span className="brand-name">REBALANCE</span>
           <span className="brand-dot" aria-hidden="true" />
           <span className="brand-status"><Sparkles size={11} />Support circle</span>
         </div>

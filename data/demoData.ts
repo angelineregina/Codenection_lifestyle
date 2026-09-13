@@ -498,7 +498,7 @@ export const friends: Friend[] = [
     activity: null,
     statusQuote: 'Just getting started with focus tracking.',
     updates: [
-      { id: 'kenji-1', text: 'Joined Beating the Burnout', timeAgo: 'yesterday' },
+      { id: 'kenji-1', text: 'Joined Rebalance', timeAgo: 'yesterday' },
     ],
   },
   {
@@ -534,5 +534,5 @@ export const quickMessages: QuickMessage[] = [
 
 export const socialQuote = {
   text: 'Small check-ins build strong circles. A little support goes a long way.',
-  author: 'Beating the Burnout',
+  author: 'Rebalance',
 };

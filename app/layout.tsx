@@ -4,7 +4,7 @@ import { BottomNav } from '@/components/BottomNav';
 import { DemoStateProvider } from '@/components/DemoStateProvider';
 
 export const metadata: Metadata = {
-  title: 'Beating the Burnout · Home',
+  title: 'Rebalance · Home',
   description: 'A calmer way to plan your day and protect your energy.',
 };
 

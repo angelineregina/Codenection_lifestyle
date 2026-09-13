@@ -144,7 +144,7 @@ function PlanBrand() {
   return (
     <div className={styles.brand}>
       <span className={styles.brandMark}><Leaf size={15} /></span>
-      <span>BEATING THE BURNOUT</span>
+      <span>REBALANCE</span>
       <span className={styles.brandStatus}><span /> Save My Day</span>
     </div>
   );
