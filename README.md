@@ -4,7 +4,12 @@
 
 **Problem Statement:** Stress & Workload Manager
 
+<<<<<<< HEAD
 **Video Presentation:** \[https://youtu.be/r9m0JQG6SSo\]  
+=======
+**Video Presentation:** [Watch our presentation](https://youtu.be/r9m0JQG6SSo)  
+**Presentation Slides:** [View our presentation](https://canva.link/iob0i8bqiqfgoaj)
+>>>>>>> d4492ae3c59ed8f661039d62f759539abcc0d585
 
 **Presentation Slides:** \[https://canva.link/iob0i8bqiqfgoaj\] 
 
