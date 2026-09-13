@@ -5,7 +5,7 @@
 **Team:** See Eng Chin, Hui Qing Wong, Angeline Regina Lee  
 **Problem Statement:** Stress & Workload Manager  
 
-**Video Presentation:** [Watch our presentation](YOUR_YOUTUBE_LINK)  
+**Video Presentation:** [Watch our presentation](https://youtu.be/r9m0JQG6SSo)  
 **Presentation Slides:** [View our presentation](https://canva.link/iob0i8bqiqfgoaj)
 
 ---
