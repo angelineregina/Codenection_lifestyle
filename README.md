@@ -1,351 +1,147 @@
-# ReBalance by FIT2099
+# **ReBalance by FIT2099**
 
-> **A Student Workload Sustainability App**
+**Team:** See Eng Chin, Hui Qing Wong, Angeline Regina Lee
 
-**Team:** See Eng Chin, Hui Qing Wong, Angeline Regina Lee  
-**Problem Statement:** Stress & Workload Manager  
+**Problem Statement:** Stress & Workload Manager
 
-**Video Presentation:** [Watch our presentation](YOUR_YOUTUBE_LINK)  
-**Presentation Slides:** [View our presentation](https://canva.link/iob0i8bqiqfgoaj)
+**Video Presentation:** \[https://youtu.be/r9m0JQG6SSo\]  
 
----
+**Presentation Slides:** \[https://canva.link/iob0i8bqiqfgoaj\] 
 
-## 1. Project Overview
+## **1\. Project Overview**
 
-### The Problem
+**The Problem**
 
-University students often have to manage multiple academic deadlines, classes, revision sessions, extracurricular activities, social commitments, errands, and personal responsibilities at the same time.
+University students often have to manage multiple academic deadlines, classes, revision sessions, extracurricular activities, social commitments, errands, and personal responsibilities at the same time. The problem is not only having too many tasks, but also difficulty understanding whether their current workload is realistically manageable and knowing what to change when it is not. Students may underestimate how long tasks will take, experience several deadlines within a short period, sacrifice recovery or sleep to create more working time, or continue following an unrealistic schedule even when their available capacity has changed.
 
-The problem is not only having too many tasks, but also difficulty understanding whether their current workload is realistically manageable and knowing what to change when it is not.
+This can create a cycle where students only realise they are overloaded after their schedule has already become difficult to manage. Existing planning tools can show what needs to be completed and how much time has been scheduled, but time alone does not necessarily represent a student's ability to manage their workload. Mental demand, physical condition, recovery, social commitments, errands, deadlines, and available time can all influence how manageable a particular day or week feels.
 
-Students may underestimate how long tasks will take, experience several deadlines within a short period, sacrifice recovery or sleep to create more working time, or continue following an unrealistic schedule even when their available capacity has changed.
+**Stakeholders**
 
-This can create a cycle where students only realise they are overloaded after their schedule has already become difficult to manage.
+The primary stakeholders are university students, particularly those managing multiple academic and personal commitments simultaneously. They need a practical way to understand their workload, identify upcoming periods of overload, and determine which commitments can realistically be moved or prioritised.
 
-Existing planning tools can show what needs to be completed and how much time has been scheduled, but time alone does not necessarily represent a student's ability to manage their workload.
+**Sunsama (similar apps in the market)**
 
-Mental demand, physical condition, recovery, social commitments, errands, deadlines, and available time can all influence how manageable a particular day or week feels.
+One existing solution is Sunsama, a daily planning application that helps users organise tasks, estimate task durations, timebox work on a calendar, and identify when their planned workload exceeds a daily threshold. Sunsama calculates its workload using the planned time assigned to tasks and allows users to defer work when they have overcommitted.
 
-### Stakeholders
+However, Sunsama's workload threshold is primarily time-based. Its daily workload capacity is configured in hours, and only tasks categorised in work contexts contribute to that threshold. This is useful for answering "Have I scheduled too many hours of work?", but our identified problem is broader: "Given everything affecting me today, is this workload realistically manageable, why am I at risk of overload, and what can I change?"
 
-The primary stakeholders are **university students**, particularly those managing multiple academic and personal commitments simultaneously.
+**Our Solution**
 
-They need a practical way to:
+Beating the Burnout evaluates workload across five dimensions — mental, time, physical, social, and errands — instead of tracking scheduled hours alone, and focuses on intervention rather than simply detection. When overload is identified, the system explains the specific contributing factors rather than returning an unexplained score, lets students test the effect of a schedule change in a What-if Simulator before committing to it, and offers a one-tap Save My Day suggestion that protects essential recovery time. A companion Vibe Engine adds a personal baseline check-in and lightweight session cues during focus sessions, so students have an early, low-friction nudge before a day becomes unmanageable.
 
-- Understand their workload
-- Identify upcoming periods of overload
-- Understand why their workload may be difficult to sustain
-- Determine which commitments can realistically be moved or prioritised
-- Protect sufficient recovery time
+**Feature Set**
 
----
+* Workload Assessment: Students add their commitments and tasks with an estimated duration and demand level. The system combines this with deadline load and available hours to estimate workload across the five dimensions.  
+* Overload Risk Detection: The system identifies and explains why the student is at risk of overload — such as deadline compression, insufficient recovery, or high mental workload — instead of simply giving an unexplained burnout score.  
+* Save My Day: A single, low-effort suggestion (such as adding a short recovery break) that a student can accept in one tap to make an overloaded day more sustainable, without having to plan the change themselves.  
+* What-if Simulator: Lets students pick a specific task and test moving, shortening, or removing it, showing a before → after projection of workload, planned demand, and recovery time. For example, moving a lower-priority task to Saturday can show workload shifting from 108% to 84% before the student commits to the change.  
+* Recovery \+ Before/After: Every simulated or applied change shows the resulting shift in workload, planned demand, and recovery time side by side with the current state, so the benefit of an intervention is visible immediately rather than assumed.  
+* Vibe Engine  
+  * Two connected check-in modes:  
+    * Quick Vibe Check — a short self-reported baseline (mood and energy) students set at the start of a focus session, which they can confirm and reuse.  
+    * Focus Guard — during a study session, surfaces supporting session cues (such as break status and session length) alongside a recovery-break suggestion and a direct link to Save My Day, giving students an easy off-ramp if a session runs long without a break.
 
-### Existing Solution — Sunsama
+## **2\. Ideation & Process**
 
-One existing solution is **Sunsama**, a daily planning application that helps users organise tasks, estimate task durations, timebox work on a calendar, and identify when their planned workload exceeds a daily threshold.
+### **2.1 Ideas We Considered**
 
-Sunsama calculates its workload using the planned time assigned to tasks and allows users to defer work when they have overcommitted.
+Table of every distinct idea generated, with why each was kept or dropped, order it so that chosen ideas are listed first
 
-However, Sunsama's workload threshold is primarily time-based. Its daily workload capacity is configured in hours, and only tasks categorised in work contexts contribute to that threshold.
+| Idea | Why it was dropped / kept |
+| :---- | :---- |
+| A. Workload Assessment / Multidimensional Dashboard  | **Kept** because it directly addresses the five workload dimensions: mental, time, physical, social and errands. Tasks, deadlines and available time are used to estimate the user's overall workload and capacity.   |
+| B. Overload Risk Detection  | **Kept** because it helps users understand when and why their workload may become unmanageable. Instead of giving an unexplained burnout score, it identifies factors such as deadline compression, low recovery and high mental workload.  |
+| C. Save My Day / Smart Rebalancing   | **Kept** by combining the original Load Balancer, Preventive Rebalancing and Save My Day concepts into a single one-tap recovery suggestion that makes an overloaded day more manageable, with task-level rebalancing handled separately by the What-if Simulator. |
+| D. What-if Simulator   | **Kept** because it allows users to test possible schedule changes before accepting them. Users can see how moving or postponing a task could affect their workload, such as reducing it from 108% to 84%.  |
+| E. Recovery \+ Before/After  | **Kept** because rebalancing workload should also include recovery. The system recommends suitable recovery actions and shows the difference in workload/risk before and after an intervention.   |
+| F. Vibe Engine   | **Kept as a secondary feature** because it combines the original Photo Vibe Check with Focus Guard. Quick Vibe Check establishes a starting-state reference, whileFocus Guard displays supporting session cues during a study session alongside a recovery suggestion, giving students an easy prompt to check in and reset. |
+| G. Friend Battery Sharing  | **Kept and built as a secondary feature —** students can view friends' status, share encouragement, and send support, supporting the workload-management flow without being required for it. |
+| H. Personal Average Task Prediction  | **Kept as a secondary feature** because personal task history could improve future time estimates, but it is not essential to the core solution and requires time to collect enough individual user data.  |
+| G. Full Calendar-Based Dashboard    | **Dropped** because a calendar mainly represents time and does not fully capture the five workload dimensions. Calendar/task information is instead used as an input to Workload Assessment.  |
+| H. Public Burnout/Recovery Leaderboard   | **Dropped** because competition could create additional pressure and does not directly help students manage or rebalance their workload.  |
+| I. Fully Automatic Schedule Changes  | **Dropped** because changing schedules automatically could reduce user control. Instead, Save My Day and the What-if Simulator show suggested changes for the user to review before accepting them.   |
+| J. Basic To-Do List  | **Dropped** because existing productivity applications already provide basic task lists, and this alone does not solve the identified workload-management problem.   |
+| K. Workload Score Based Only on Task Hours  | **Dropped** because time alone does not accurately represent a student's overall workload. The final approach considers mental, time, physical, social and errand-related demands.  |
+| L. Recovery Gamification / Streaks / Leaderboard  | **Dropped** because gamification does not directly contribute to the core goal of assessing and rebalancing student workload. Competitive elements such as leaderboards may also introduce unnecessary pressure or stress.  |
 
-This is useful for answering:
+### 
 
-> **"Have I scheduled too many hours of work?"**
+### **2.2 Ideation Boards**
 
-Our identified problem is broader:
+Mindmap [https://whimsical.com/codenection/beating-the-burnout-HHiW3qKcsAgDehoJdjhTG1](https://whimsical.com/codenection/beating-the-burnout-HHiW3qKcsAgDehoJdjhTG1)   
+![][image1]
 
-> **"Given everything affecting me today, is this workload realistically manageable, why am I at risk of overload, and what can I change?"**
-
----
-
-### Our Solution
-
-**ReBalance** evaluates workload across five dimensions rather than tracking scheduled hours alone:
-
-- **Mental**
-- **Time**
-- **Physical**
-- **Social**
-- **Errands**
-
-ReBalance focuses on **intervention rather than simply detection**.
-
-When overload is identified, the system:
-
-1. Explains the specific contributing factors
-2. Suggests ways to make the day more manageable
-3. Lets students test schedule changes before committing to them
-4. Protects important recovery time
-5. Shows the predicted effect before and after an intervention
-
-A companion **Vibe Engine** adds a personal baseline check-in and lightweight session cues during focus sessions.
-
-### Core Flow
-
-**Assess → Explain → Rebalance → Simulate → Recover**
-
----
-
-## Feature Set
-
-### 1. Workload Assessment
-
-Students add their commitments and tasks with an estimated duration and demand level.
-
-The system combines this with deadline load and available hours to estimate workload across five dimensions:
-
-- Mental
-- Time
-- Physical
-- Social
-- Errands
-
-### 2. Overload Risk Detection
-
-The system identifies and explains **why** the student may be at risk of overload.
-
-Examples include:
-
-- Deadline compression
-- Insufficient recovery
-- High mental workload
-- Multiple overlapping commitments
-- Insufficient available time
-
-Instead of providing an unexplained burnout score, ReBalance shows the factors contributing to the workload result.
-
-### 3. Save My Day
-
-**Save My Day** provides a low-effort suggestion that can make an overloaded day more sustainable.
-
-Suggested changes may include:
-
-- Moving a lower-priority task
-- Shortening a flexible commitment
-- Adding a recovery break
-- Protecting important commitments
-
-The student reviews the proposed changes before applying them rather than having their schedule changed automatically.
-
-### 4. What-if Simulator
-
-The **What-if Simulator** allows students to select a specific task and experiment with:
-
-- **Move**
-- **Shorten**
-- **Remove**
-
-The system then displays a before-and-after projection of:
-
-- Workload
-- Planned demand
-- Recovery time
-- Workload level
-- Updated daily schedule
-
-For example:
-
-> Moving a lower-priority task may reduce workload from **108% → 84%** before the student commits to the change.
-
-### 5. Recovery + Before/After
-
-Every simulated or applied change shows how the intervention affects the student's day.
-
-The student can compare:
-
-**Before → After**
-
-across:
-
-- Workload
-- Planned demand
-- Recovery time
-- Overall workload level
-
-This makes the benefit of an intervention visible rather than assumed.
-
-### 6. Vibe Engine
-
-The **Vibe Engine** is a supporting feature and does not independently determine overload or burnout.
-
-It contains two connected modes:
-
-#### Quick Vibe Check
-
-A short personal check-in before a focus session.
-
-Students provide:
-
-- Current mood
-- Current energy level
-
-This creates a **personal reference baseline** that can be used by Focus Guard during the session.
-
-#### Focus Guard
-
-During a study session, Focus Guard displays supporting session cues alongside the student's earlier baseline.
-
-It can consider signals such as:
-
-- Session length
-- Break status
-- Changes from the starting reference
-
-If the session runs for a long period without recovery, the system can recommend a short break or direct the student to **Save My Day**.
-
-> **Important:** The Vibe Engine is a supporting signal only. It does not diagnose fatigue or burnout.
-
----
-
-## 2. Ideation & Process
-
-### 2.1 Ideas We Considered
-
-| Idea | Decision | Reason |
-|---|---|---|
-| **Workload Assessment / Multidimensional Dashboard** | ✅ Kept | Directly addresses the five workload dimensions: mental, time, physical, social, and errands. |
-| **Overload Risk Detection** | ✅ Kept | Helps users understand when and why their workload may become unmanageable. |
-| **Save My Day / Smart Rebalancing** | ✅ Kept | Combines workload intervention concepts into an actionable way to make an overloaded day more manageable. |
-| **What-if Simulator** | ✅ Kept | Allows users to test schedule changes before accepting them. |
-| **Recovery + Before/After** | ✅ Kept | Integrates recovery into workload management and shows the effect of an intervention. |
-| **Vibe Engine** | ✅ Kept as Secondary | Combines Quick Vibe Check and Focus Guard as supporting signals. |
-| **Friend Battery Sharing / Social Support** | ✅ Kept as Secondary | Allows students to share encouragement and support without being required for the core workload flow. |
-| **Personal Average Task Prediction** | ✅ Kept as Secondary | Could improve future estimates using individual task history but requires sufficient user data. |
-| **Full Calendar-Based Dashboard** | ❌ Dropped / Modified | A calendar mainly represents time and does not fully capture the five workload dimensions. |
-| **Public Burnout / Recovery Leaderboard** | ❌ Dropped | Competition could create additional pressure and does not directly help students rebalance workload. |
-| **Fully Automatic Schedule Changes** | ❌ Dropped | Automatic changes could reduce user control, so students review recommendations before accepting them. |
-| **Basic To-Do List** | ❌ Dropped | Existing productivity applications already provide this and it does not solve the identified problem by itself. |
-| **Workload Score Based Only on Task Hours** | ❌ Dropped | Time alone does not represent a student's overall workload. |
-| **Recovery Gamification / Streaks / Leaderboard** | ❌ Dropped | Gamification does not directly contribute to the core workload-management goal and may introduce unnecessary pressure. |
-
----
-
-### 2.2 Ideation Boards
-
-#### Mindmap
-
-[Rebalance Mindmap](images/mindmap.png)
-
-
----
-
-### 2.3 Mentor Consultation
+### **2.3 Mentor Consultation**
 
 | Date | Mentor | Feedback Received | What Was Changed |
-|---|---|---|---|
-| **10 Sept 2026** | Daniel Koh Yu Hang | Leaderboards may create unnecessary competition and do not directly help students manage workload. | Removed leaderboard and gamification features. |
-| **10 Sept 2026** | Daniel Koh Yu Hang | Task-time prediction should use individual user data rather than data from all users. | Deferred task-time prediction to future work requiring individual usage history. |
-| **10 Sept 2026** | Daniel Koh Yu Hang | Vibe Check needs a clear purpose and should not determine burnout from facial expressions alone. | Reframed Vibe Check as a personal reference baseline used by Focus Guard rather than a burnout detector. |
-| **10 Sept 2026** | Daniel Koh Yu Hang | Prioritise features that directly support workload rebalancing. | Focused the app around Workload Assessment → Risk Detection → Save My Day / What-if → Recovery. |
-| **10 Sept 2026** | Daniel Koh Yu Hang | Nine major features were too large a scope. | Reduced the scope to six core features. |
-| **11 Sept 2026** | Daniel Koh Yu Hang | Focus Guard should support workload management rather than claim to detect fatigue or burnout. | Reframed Focus Guard as a supporting signal during study sessions. |
-| **11 Sept 2026** | Daniel Koh Yu Hang | The risk engine should explain why workload is unsustainable rather than relying on unexplained AI. | Changed it to an explainable workload sustainability risk engine. |
+| :---- | :---- | :---- | :---- |
+| 10 Sept 2026 | Daniel Koh Yu Hang | Leaderboards may create unnecessary competition and do not directly help students manage workload.  | Removed leaderboard and gamification features.  |
+| 10 Sept 2026 | Daniel Koh Yu Hang | Task-time prediction should use individual user data rather than data from all users.  | Deferred task-time prediction entirely — not built in this prototype; noted as future work requiring individual usage history. |
+| 10 Sept 2026 | Daniel Koh Yu Hang | Vibe Check needs a clear purpose and should not determine burnout from facial expressions alone.  | Reframed Vibe Check as a personal reference baseline (mood \+ energy), referenced by Focus Guard rather than used to determine burnout. |
+| 10 Sept 2026 | Daniel Koh Yu Hang | Prioritise features that directly support workload rebalancing.   | Focused the app around the core workload-management flow (Workload Assessment → Risk Detection → Save My Day / What-if → Recovery), with Social kept as a secondary feature.   |
+| 10 Sept 2026 | Daniel Koh Yu Hang | Nine major features were too large a scope.  | Reduced scope to six core features (Workload Assessment, Overload Risk Detection, Save My Day, What-if Simulator, Recovery \+ Before/After, Vibe Engine). |
+| 11 Sept 2026 | Daniel Koh Yu Hang | Focus Guard should support workload management rather than claim to detect fatigue/burnout.   | Reframed it as a supporting signal during study sessions that does not determine burnout on its own. |
+| 11 Sept 2026 | Daniel Koh Yu Hang | The risk engine should clearly explain why workload is unsustainable rather than relying on unexplained AI.  | Changed it to an explainable workload sustainability risk engine.  |
 
----
+## **3\. Design & Prototype**
 
-## 3. Design & Prototype
+**UI Prototype:** \[ https://canva.link/p0w9yobbavnf3r8 \]
 
-**UI Prototype:** [View our prototype](https://canva.link/p0w9yobbavnf3r8)
+## 
 
-## 4. What Makes It Different
+## **4\. What Makes It Different**
 
-ReBalance differs from traditional productivity apps by focusing on **whether a student's workload is realistically manageable**, rather than only organising tasks and available time.
+Beating the Burnout differs from traditional productivity apps by focusing on **whether a student's workload is realistically manageable**, rather than only organising tasks and available time. The solution not only identifies overload but also explains its causes and helps students take action.  
 
-The solution does not stop at identifying overload. It explains its causes and helps students take action.
+| Novel Feature  | What Makes It Different |
+| ----- | ----- |
+| **5-Dimensional Workload Assessment**   | Measures workload across **mental, time, physical, social and errands**, rather than relying only on scheduled task hours.  |
+| **Explainable Overload Risk Detection**  | Instead of giving an unexplained burnout score, it shows why workload may be unsustainable, such as deadline compression, high mental demand or insufficient recovery. |
+| **Save My Day** | Goes beyond detecting overload by offering a single, low-effort recovery-focused suggestion the student can accept in one tap, so acting on an overloaded day doesn't require the student to plan the change themselves. |
+| **What-if Simulator**  | Lets students pick a specific task and experiment with moving, shortening, or removing it, immediately seeing the effect — such as workload dropping from 108% to 84% — before committing to the change. |
+| **Recovery \+ Before/After**  | Integrates recovery into workload management and shows how a suggested or simulated intervention changes the student's workload, demand, and recovery time before and after. |
+| **Vibe Engine**  | Combines Quick Vibe Check and Focus Guard as supporting signals. Rather than claiming to diagnose burnout, it gives students a personal baseline and session-level cues that prompt a recovery suggestion, while workload decisions remain based on the broader assessment, not on these signals alone. |
 
-| Novel Feature | What Makes It Different |
-|---|---|
-| **5-Dimensional Workload Assessment** | Measures workload across mental, time, physical, social, and errands rather than relying only on scheduled task hours. |
-| **Explainable Overload Risk Detection** | Shows why workload may be unsustainable, such as deadline compression, high mental demand, or insufficient recovery. |
-| **Save My Day** | Goes beyond detecting overload by providing actionable changes that can make the student's day more manageable. |
-| **What-if Simulator** | Lets students experiment with moving, shortening, or removing a task and immediately preview the effect before committing. |
-| **Recovery + Before/After** | Integrates recovery into workload management and shows how an intervention changes workload, demand, and recovery time. |
-| **Vibe Engine** | Combines Quick Vibe Check and Focus Guard as supporting signals without claiming to diagnose burnout. |
+The main difference is the complete flow:
 
-### The Main Difference
+**Assess workload → Explain overload → Rebalance → Simulate changes → Recover**
 
-Most productivity tools help users organise work.
+Rather than simply telling students that they are busy or stressed, **Beating the Burnout helps them understand what is making their workload difficult and what they can realistically change.**
 
-ReBalance focuses on the complete intervention flow:
+## **5\. Technical Architecture & Feasibility**
 
-> **Assess workload → Explain overload → Rebalance → Simulate changes → Recover**
+**Tech stack**
 
-Rather than simply telling students that they are busy or stressed, **ReBalance helps them understand what is making their workload difficult and what they can realistically change.**
+| Component | Technology | Why/Constraints |
+| ----- | ----- | ----- |
+| Frontend | React \+ Vite  | Fast to develop and suitable for an interactive dashboard. The team will need to manage multiple UI states for simulations and rebalancing.  |
+| Styling  | Tailwind CSS  | Allows the team to build and modify the interface quickly during the hackathon.  |
+| Backend & Database  | Supabase  | Provides a database, authentication and backend services in one platform, reducing development time. Free-tier limits may restrict production-scale usage.  |
+| Database  | PostgreSQL via Supabase  | Stores users, tasks, workload data, schedules and recovery information.  |
+| Risk Engine  | Next.js / TypeScript rule-based calculations  | Keeps workload calculations transparent and explainable instead of relying on a black-box AI model.  |
+| Vibe Engine  | face-api.js / browser camera  | Allows basic facial cues to be processed locally. It will only provide a supporting signal and will not diagnose fatigue or burnout.  |
+| Hosting  | Vercel  | Simple deployment for a React/Vite web application and suitable for a hackathon prototype.  |
+| Version Control  | GitHub: [https://github.com/angelineregina/Codenection\_lifestyle](https://github.com/angelineregina/Codenection_lifestyle)  | Allows team members to collaborate, manage branches and track changes.  |
 
----
+**Build plan & scope**
 
-## 5. Technical Architecture & Feasibility
+During the building phase, we will focus on implementing one complete end-to-end workload management flow rather than attempting to fully implement every proposed feature.
 
-### Tech Stack
+**Core Features To Build**
 
-| Component | Technology | Why / Constraints |
-|---|---|---|
-| **Frontend** | React + Vite | Fast to develop and suitable for an interactive dashboard. Multiple UI states must be managed for simulations and rebalancing. |
-| **Styling** | Tailwind CSS | Allows rapid interface development and modification during the prototype phase. |
-| **Backend & Database** | Supabase | Provides database, authentication, and backend services in one platform. Free-tier limits may restrict production-scale usage. |
-| **Database** | PostgreSQL via Supabase | Stores users, tasks, workload data, schedules, and recovery information. |
-| **Risk Engine** | TypeScript rule-based calculations | Keeps workload calculations transparent and explainable instead of relying on black-box AI. |
-| **Vibe Engine** | face-api.js / Browser Camera | Allows lightweight local session cues. It provides supporting signals only and does not diagnose fatigue or burnout. |
-| **Hosting** | Vercel | Provides simple deployment suitable for the prototype. |
-| **Version Control** | GitHub | Allows team collaboration, branch management, and change tracking. |
+* **Workload Assessment** — Allow students to enter tasks and commitments and assess workload across the five dimensions.  
+* **Overload Risk Detection** — Identify unsustainable workload and clearly explain contributing factors such as insufficient available time, deadline compression and high cognitive demand.  
+* **What-if Simulator** — Allow students to select a task and test moving, shortening, or removing it, seeing the predicted effect on workload before accepting the change.  
+* **Save My Day** — Offer a single, low-effort recovery-focused suggestion the student can accept in one tap to make an overloaded day more manageable, while protecting important commitments.  
+* **Recovery \+ Before/After** — Recommend appropriate recovery actions and show how the proposed intervention changes the student's workload, demand, and recovery time.
 
-## Build Plan & Scope
+**Supporting Innovation**
 
-During the building phase, the team focuses on implementing **one complete end-to-end workload-management flow** rather than attempting to fully implement every proposed feature.
+The Vibe Engine (Quick Vibe Check \+ Focus Guard) was built as a supporting feature. It provides a personal baseline and session-level cues during workload management, but it does not independently determine overload or burnout.
 
-### Core Features
+**Outside the Core Scope**
 
-#### Workload Assessment
+Friend Sharing was built as a secondary feature supporting the core flow (not required for it). Personal Average Task Prediction was not developed — it remains future work, requiring individual usage history the current prototype doesn't collect.
 
-Allow students to enter tasks and commitments and assess workload across the five dimensions.
-
-#### Overload Risk Detection
-
-Identify potentially unsustainable workload and clearly explain contributing factors such as:
-
-- Insufficient available time
-- Deadline compression
-- High cognitive demand
-- Insufficient recovery
-
-#### Save My Day
-
-Offer actionable suggestions that can make an overloaded day more manageable while protecting important commitments.
-
-#### What-if Simulator
-
-Allow students to select a task and test:
-
-- Moving it
-- Shortening it
-- Removing it
-
-The student can see the predicted effect on workload before accepting the change.
-
-#### Recovery + Before/After
-
-Recommend appropriate recovery actions and show how an intervention changes:
-
-- Workload
-- Planned demand
-- Recovery time
-- Workload level
-
-### Supporting Innovation
-
-The **Vibe Engine**, consisting of **Quick Vibe Check + Focus Guard**, is implemented as a supporting feature.
-
-It provides a personal baseline and session-level cues during workload management but **does not independently determine overload or burnout**.
-
-### Secondary Feature
-
-**Friend Sharing / Social Support** is implemented as a secondary feature supporting the core flow but is not required for it.
-
-### Future Work
-
-**Personal Average Task Prediction** was not developed for the current prototype.
-
-A future implementation could learn from an individual student's own task history to improve estimated completion times.
-
----
-
+[image1]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnAAAAHYCAYAAADNtNW9AABoBUlEQVR4Xuy9ebBsZZmnW9ERPQ8R3f1Hd/QQ3X/0EN1NRHdER1N2R8e9VXKt7lsqdUuqUESwVKajeEQREQsHqo5CiR4ED4iHSRmkaLEQZXAAZRQZDyCCDDKJyFRHPEgJWlbeetapX/Lt76wcd2buzNzPE/HGWuv9hrUy996Zv/0N7/srHRERERFZKH6ldoiIiIjIfKOAExEREVkwFHAiIiIiC4YCTkRERGTBUMCJiIiILBgKOBEREZEFQwEnIiIismCsSsDt2LGje/7kk092z3/+8593z1988cXu+f33399t88tf/rLr/+lPf9o9r3nuuedqV8NPfvKT7vmf//mfFyUv8bOf/ax7Xj5r27WISAmfYz/+8Y87L7zwQl3Ul36fZ20MU5/PK57lL/7iL+oiEVmnjCXgHnjggc7f/tt/uzn/5//8nzfH//Af/kNz/Df/5t90brjhhuZ8n332aQTY+eef31y/7GUva46f/vSnO9u3b++ceeaZnf33378Rc//u3/27pqwkvtwj/ON//I+b41ve8pbOHXfc0XnkkUc6Bx544Io63OMf/IN/0L3+z//5P3d+//d/vzn/whe+0PlP/+k/dctERGo+//nPd37xi180wqn+DGrjtNNOa47f+973qpJ2/ubf/JvN8ZWvfGVVsit8XvEst99+e/PZNin4p1pEFpOxBNwZZ5zR+Z//83825xFZH/nIR7r/qUbAwQc+8IHOo48+2px/61vf6vr5jxJh9y/+xb/o/Lf/9t86n/vc57pl4a//9b/eHA866KDmeNJJJzXH4447rjn+tb/21zp77713c44IRFiGv/N3/k7nG9/4RveZEHD/7J/9s+aceyrgRKQfCLhvfvObnUsvvbRzwAEHNALqrW99a+fd7353c/4//sf/6Fx77bXNZ80999zTefvb396INwTZXnvt1TnxxBO7wu8//sf/2NmyZUvnt37rt7r98/n29NNPN0fu8Ru/8RuN/x/9o3/UueKKKzqHHHJIty6fVzzLJz/5yc53v/vdzgknnND4uf+/+lf/qvG/8Y1v7HznO9/p/O///b+btsx+/Mt/+S+bz8F/+2//bWfbtm3d/h566KHOdddd19m6dWvXJyKLxVgCDvhQ+Nf/+l93Xv3qVzcfFOXQfing4L/+1//auf7667vXTLe+5jWvac5/5Vd2PsJ73vOebnngQ4YPoA996EMr/B/96EebIwLud37nd5pz7v/ggw8253y48oH3v/7X/2o+ZAEBFwF55ZVXKuBEpC8IuPAP/+E/7PzhH/5h55/8k3/SGP+w3nTTTZ3/8l/+SyO4ICNwEXCA0GIE75lnnmmuSwGXEbjf/M3fbI4RWH//7//95h58voV8XvGPKvdsE3CAgAuc55/fN7/5zbsIOHAETmRxGUvA8Uef6UmmTI844ogV5RFwb3vb25r1aUyl7r777o0PcYWfD7Xnn3++89//+39v/LvttltzvOuuu3Z28pcg3oAPT7j77rub4z/9p/+0OfIh+e1vf7vzwx/+sPOud71rZ6O/BFEZ9thjj86GDRsaAQf//t//++aogBORfiDgIr7+xt/4G83o2q233tp83vBP4N/9u3+3qfe3/tbfao4f//jHm2Mt4OB1r3tdMxNRCri/9/f+Xrc+RGBlViPlwOcVz3Lvvfd2XvGKVzQzFqydY9Stn4BDDAJLXnjuO++8s3P66ad3BRyvR0QWk7EEXPjBD37QHMupy5pnn322OfLh0YtMsQLTECWsb2vjscce654zTeriXhGZNnzOlJsays1Qf/Znf7ZiA1cJU6WwcePGFf5en1v9Pi9DRvUGUfZVb5hwM5fI4rIqATcN7rvvvtolIrLQME166qmnNjMGIiKTYO4EnIiIiIj0RwEnIiIismAo4EREREQWDAWciIiIyIKhgBMRERFZMBRwIiIiIguGAk5ERERkwVDAiYiIiCwYCjgRERGRBUMBJyIiIrJgKOBEREREFgwFnIjMnN875J2di778ldo9FMd+fEvtajjl9LOH6rOtzk233l67Ovfc+0Dtatix47naJSIycxRwIjI17r3gic7VG7/X2EOXPtX1I+De/u73d16x5+sbQYUowveafQ9sjognzk/e+pnmPHVzfN8xf9SUR3jRBz7q0x7j+uzzL+wccfSmrmjjmDocqZO26ROBSL977XvQiucE/PTJ88af+6WflIuITBMFnIhMhbvOeKxz0a/f0lPAxQCRFlGFIaIQRwgm7MqrrmvEUdmOeogoQDCVAi5H+rnm+hu7AgzKMu5LWdkuohABFz/CDrhfyutnCfT72ONPdK9FRKaBAk5EJs4Vb/5uM/o2DL3ETjmFWU57lv6c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>
