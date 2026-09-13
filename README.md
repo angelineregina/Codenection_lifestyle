@@ -69,7 +69,7 @@ Table of every distinct idea generated, with why each was kept or dropped, order
 ### **2.2 Ideation Boards**
 
 Mindmap [https://whimsical.com/codenection/beating-the-burnout-HHiW3qKcsAgDehoJdjhTG1](https://whimsical.com/codenection/beating-the-burnout-HHiW3qKcsAgDehoJdjhTG1)   
-![][image1]
+   ![Mindmap](mindmap.png)
 
 ### **2.3 Mentor Consultation**
 
